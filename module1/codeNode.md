@@ -457,3 +457,200 @@ MongoDB must be v3 or higher:
    
 ---
 
+#### Node Core   Launching Node, Globals and Process   Video: Node.js REPL
+
+# Video: Node.js REPL
+
+Let's take a look how to launch node.js code.
+The first way is to use REPL.
+When you just type node from any folder,
+your cursor, your pointer,
+will change to this pointy brace,
+more sign or less sign
+depending on what equation you're looking at.
+And this is called a REPL environment.
+Why it's called REPL because,
+every expression will be
+evaluated then printed back to you.
+So we can call
+standard JavaScript functions from
+the standard JavaScript API.
+So let's create a string.
+And it also has SDR.
+So we can execute pretty
+much any JavaScript, any standard JavaScript.
+Even setTimeout, the API which is a timer API,
+we can also use it.
+Console.log and lets put a delay of 500 milliseconds.
+So you saw there's a hello.
+And also you saw some of the output which is the pointer.
+It's a reference to that timer.
+So you can see it's not like running a file.
+You immediately get back the expression.
+Let's do another example.
+So let's say, let f,
+I'm creating a function,
+and this function returns number one.
+So now when I'm invoking f, I'm getting one.
+But, when if it's just an assignment,
+assignment it's never an expression.
+In this case I will get undefined.
+And if I omit return,
+or I forget it, or I make a typo,
+then in this case f invoked would be undefined as well.
+For example, let f2 equals one,
+and then f2 it's undefined,
+because I never returned anything.
+So we can pretty much run any Node.js
+ad JavaScript code using
+the REPL. That's one of the ways.
+In order to exit, you would press control c twice,
+or you can type exit.
+And now you are back into
+the Bash script and the Bash command prompt, or zhs.
+I'm using the zhs,
+that's a similar thing. How do you know?
+You see the dollar sign.
+Unless you customize your terminal.
+In this case you would see another symbol,
+but it's not this angle point brace.
+So, we cannot execute Node.js anymore.
+You can see command not found.
+So let me clear the screen,
+and I will show you one more way.
+Not many people know about it.
+It's called eval.
+So we would just provide
+inline JavaScript right to the node command.
+So cancel that log hello.
+So it comes as a string,
+gets evaluated and we are back to the Batch terminal.
+So this is a very convenient way
+when you're writing some Batch script.
+You can just call any Node.js and
+execute it right there in the same line.
+Of course if you have a long command, long process,
+long program, Node.js program,
+that's not going to really work nice.
+And then, the main way how you would
+launch your Node.js scripts it's node,
+and the file name.
+For example program dot.js.
+Right now, I don't have that file in this folder.
+That's why you see this a little bit confusing error,
+cannot find the module.
+You might think why it's asking for a module.
+All I wanted to do just to run that script, that file.
+It's not even a module.
+Well, the way it works,
+every program, every file, it's a module for the Node.js.
+So that's why you can see,
+cannot find the module,
+when it fact it means the file that you
+provided does not exist in this folder.
+So when I do ls,
+there is no such folder,
+there is no such file in this folder, okay?
+You can obviously, you can point to a folder.
+For example, if I'm inside of
+Modules/Project_Files, I go to module one,
+and then I can go into some of those lessons,
+and then I can narrow down to
+a specific file such as this, okay?
+But, it needs to be a relative path.
+Or, it could be absolute path as well.
+The way the absolute path starts in Linux
+and Mac and other POSIX systems is with this slash.
+So that means it's a route.
+So right now it's called the invalid because I don't,
+module folder it's relative to my current folder.
+It's not an absolute path.
+I'm just giving examples,
+so this would work.
+This would work because
+I have that path. It's a valid path.
+Another way is to put dot slash.
+Dot slash it means it's relative to my current folder,
+so dot it's a current folder.
+If you have an index.js,
+you can also say dot,
+which means run me index.js from this folder.
+And if I try to run it it says,
+module cannot find because I don't have
+index.js file in this folder.
+So that's pretty much it.
+We have three ways. REPL, which
+is that pointy angle brace.
+We have node with
+e-flag and then node and pointing to a file.
+They're in the same folder or in a subfolder.
+You can also point to a parent folder,
+so dot dot slash will go one level up.
+You can go as many levels up as you want.
+Okay? So node and then the path to the file.
+If you're providing path to the folder that will just be
+an alias shortcut to saying go to the index.js.
+And by the way, the digest extension is optional.
+So I can just run it simple.
+That will be similar to running simple.js.
+So now you might have
+a conflict if you have a folder called simple,
+and if you have a file called simple.js.
+When you just do simple, what will run?
+Will it run the folder,
+meaning the file index.js inside of that folder,
+or will it run simple.js?
+Well, in fact the files will take the precedence.
+It will have the priority.
+So if you have both folder names
+simple and the file name simple.js,
+and you would execute this command without the dot js,
+it will round the fire simple.js.
+So that's it for now.
+I'll see you in the next lesson.
+
+
+### Node.js Console (REPL)
+
+Like most platforms/languages (e.g., Java, Python, Ruby, and PHP), Node.js comes with a virtual environment called 
+Read-Evaluate-Print Loop (REPL). Using REPL (a.k.a. Node console), we can execute pretty much any Node.js/JavaScript 
+code. It is even possible to include modules and work with the file system!
+
+To start Node REPL, run the following command in your terminal:
+
+    $ node
+
+The prompt should change from $ to > (or something else, depending on your shell). From this prompt, we can run any 
+JavaScript/Node.js (akin to the Chrome Developer Tools console) we want. For example:
+
+    > 1+1
+    > "Hello"+" "+"World"
+    > a=1;b=2;a+b
+    > 17+29/2*7
+    > f = function(x) {return x*2}
+    > f(b)
+
+The result of the REPL statements above are shown below. As you can see, REPL prints the results of the expressions 
+such as 1+1 or f(b):
+
+    $ node
+    > 1+1
+    2
+    > "Hello"+" "+"World"
+    'Hello World'
+    > a=1;b=2;a+b
+    3
+    > 17+29/2*7
+    118.5
+    > f = function(x) {return x*2}
+    [Function: f]
+    > f(b)
+    4
+    >
+
+REPL is one of the ways how developers can run Node code. The benefit of REPL is that you immediately see the results 
+of a particular expression or piece of code. I often use REPL to validate Regular Expressions or string methods. The 
+downside of REPL is that the code is not saved which means it's harder to replicate the execution. Thus, in the next 
+lesson we'll learn how to launch Node code from a saved file.
+
+---
