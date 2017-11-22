@@ -367,3 +367,93 @@ This changes the permissions of the sub-folders used by npm and some other tools
 
 
 ---
+
+#### Node Core   Installation and Recommended Tool Chain   Video: Before we start
+
+# Video: Before we start
+
+>> I hope you followed the instructions
+in the previous video,
+in which I showed you how to install MongoDB.
+So let's go and check that you
+have the proper MongoDB version.
+So you would go into your terminal
+and type mongod -version.
+Mongod is a command for
+the Daemon of MongoDB database start over.
+And as you can see I have version3
+which is compatible for this course. What else can we do?
+We can install something
+globally with NPM, such as node-static.
+So node-static,
+that's a package name and it's a command line tool,
+so we can install it globally.
+That's why you see that -g flag and i stands for install.
+So if you can execute this command and if
+you've seen a successful message without
+any errors that means you're NPM was installed properly.
+And let's double check that we have the static command.
+Now we have the static command installed.
+Thanks to the global NPM installation.
+If you're seeing permission error,
+most likely you would have to use sudo
+npm i -g node-static.
+But this is only for global installations.
+The better way would be to use the change
+ownership command on that particular folder.
+So how do you know the folder name? So we can all do NPM.
+Which NPM that will give you the location of the command
+and you can also monitor in
+those error messages what folder lacks those permissions.
+And then you can go and use change
+on to change those permissions.
+So it depends how you installed NPM.
+I used NVM to install NPM.
+That's another tool which you can leverage.
+NVM stands for Node Version Manager.
+One more thing that you can check.
+You can use Evo to check the versions,
+but the versions will be coming from the node process.
+So it's kind of like from within.
+And that should match the non-version command.
+You can also check versions on
+the Google Chrome V8 engine and other packages.
+So that's it, you're ready to go now.
+
+
+### Before we start
+
+Let's check that you have everything ready to get up and running with the exercises and code presented in this course. 
+Open your Terminal app or Command Prompt and type the following commands to check for the presence and versions of the 
+required platforms, tools and libraries.
+
+Node must be v8 or higher. Check it by running:
+
+    node --version
+
+You should be able to execute Node. You can use -e to quickly run Node code, for example:
+
+    node -e 'console.log(`My node version is ${process.versions.node}`)'
+
+npm must be v5 or higher. Check it by running:
+
+    npm --version
+
+Let's test npm installation. Go ahead and globally install node-static which is a useful local development web server:
+
+    npm i -g node-static
+
+You should not see any errors or need sudo if you followed instructions on how to change ownership of npm in the 
+previous unit. If you see permission errors, then please go back to configuring npm and change the ownership of npm's 
+folder.
+
+When node-static is done installing, then you should be able to check static (command for node-static) with (I'm using 0.7.9):
+
+   static --version
+
+MongoDB must be v3 or higher:
+
+   mongod --version
+   
+---
+
