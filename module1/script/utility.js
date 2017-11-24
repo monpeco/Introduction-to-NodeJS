@@ -1,3 +1,5 @@
+console.log('This will be printed just once')
+
 module.exports = function(numberToSum){
     var sum = 0,
         i = 0,
