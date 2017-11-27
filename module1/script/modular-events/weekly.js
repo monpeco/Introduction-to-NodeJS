@@ -7,3 +7,5 @@ job.on('done', (details)=> {
 });
 
 job.emit('start');
+
+job.emit('yield');

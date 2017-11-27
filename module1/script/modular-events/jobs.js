@@ -7,6 +7,10 @@ class Job extends EventEmitter{
         this.on('start', ()=> {
             this.process();
         });
+        
+        this.on('yield', ()=> {
+            this.passing();
+        });
     }
     process(){
         setTimeout(()=> {
@@ -14,6 +18,9 @@ class Job extends EventEmitter{
             this.emit('done', {completedOn: new Date()}
             ,700)
         });
+    }
+    passing(){
+        console.log("This job is passing");
     }
 }
 
