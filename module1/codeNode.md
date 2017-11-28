@@ -860,7 +860,77 @@ the developers the means to program an appropriate response.
 
 # Video: require and module.export
 
-TODO: missing video
+https://youtu.be/KO1eWJLJM_U
+
+>> Node.js provides a building mechanism for modules.
+The way they are implemented,
+there is required method which will allow you
+to import functionality from other modules or files,
+and there is also module.exports,
+which allows you to create modules by exporting
+functionality to other programs or other files.
+So let's take a look how module.exports work.
+Module.exports, it's a global property
+and it's available across your entire file.
+So let's say you create a new file,
+you would type module.exports equal.
+And then what you are assigning
+basically up to you, up to a developer.
+You can assign an object,
+you can assign a function too.
+I would recommend you assigning a function.
+Why? Because functions are more versatile.
+They're more flexible.
+You can pass arguments when you invoke
+a function and you can execute sorted code.
+With an object, you don't have as much flexibility.
+Object there are more static and there are
+for more static information,
+maybe some configuration, maybe some translation,
+some labels for your buttons that's for objects.
+But in most cases, just use a function.
+So module.exports equals a function,
+and you can declare
+whatever arguments you want for that functions to have.
+So that's your module.
+You can export things for
+other files and programs and modules to use.
+So, in those programs and files,
+how can you import your module or someone else's module?
+You would invoke require,
+so require with parentheses and then you
+provide either a path to a file.
+It could be an absolute path,
+or it could be a relative path,
+or it could provide a name.
+In both cases it's a string.
+When it's a name, it could be two things.
+It could be a core module,
+we will cover core module in the next lesson,
+or it could be an NPM module.
+In the case of a file,
+it starts with either a dot or
+two dots because that's how we identify the path.
+And we can also import Node.js
+JavaScript and Node.js files,
+but also JSON files.
+In the case of the JSON files,
+they just become objects.
+So once you import your object,
+you can assign it to a variable and then you can
+continue to use that variable in your main program.
+So, the main thing to remember
+from this lesson whatever you are
+exporting is exactly the same thing
+that you will be importing.
+So if you export a function,
+expect to use a function in
+your main application way you consume that module.
+If you export an object,
+you will get an object similarly.
+So that's it for this lesson.
+I'll see you in the next video.
+
 
 ### require and module.exports
 
@@ -1147,7 +1217,67 @@ console.log('Swedish ' +
 
 # Video: Core Modules
 
-TODO: missing video
+https://youtu.be/MkrKbpR3dCo
+
+Node.js comes with batteries included.
+It means they are core modules that you can
+use and you don't have to install them with npm.
+They're already part of Node.js,
+you don't need to put them in your project folder,
+they are not in Node underscore modules,
+they're just somewhere where
+your platform has been installed.
+And it's good because there are a lot of useful modules.
+Let me give you an example.
+There is an OS module which allows you to
+get information about your operating system.
+There's the Child Process module which allows
+you to spawn other processes and
+execute other programs and
+binary code outside of your Node.js code.
+There are two modules on which I want to
+focus more in this lesson.
+First module it's called FS.
+FS stands for File System and that's
+exactly what this module allows you to work with.
+You can create a file,
+you can create a folder,
+you can read from a file,
+you can write to a file.
+So, you can perform all the
+needed operations on your file system.
+As you can assume,
+this does not exist in the browser JavaScript
+because browser JavaScript it's a different environment.
+But in Node.js, we can work with the file system.
+The second important core module
+it's called Path, P-A-T-H.
+Path, why it's important?
+Because you will use it a lot.
+You will use it a lot to build
+cross-platform applications, cross-platform code.
+You see, the reason why path is different on
+different system is because
+it needs different separators,
+different type of slashes,
+either forward slash or backward slash.
+And with path that join method,
+you can easily convert
+your path folders into the appropriate format.
+So, those two core modules,
+you would see them often in this project then another
+Node.js code but there are more and more core modules.
+For example, http, we will cover it
+in few last lessons of this module.
+It's also a core module.
+So, the bottom line,
+you can build a lot of things
+just with core Node.js modules.
+You don't even need to have to go to npm.
+Of course, they might be not as
+advanced but in some systems they are good enough.
+So, that's it and I'll see you in the next video.
+
 
 ### Core Modules
 
@@ -1258,7 +1388,48 @@ Full documentation: https://nodejs.org/api/path.html
 
 # Video: Understanding Event Emitters
 
-TODO: Missing video
+https://youtu.be/QXTDgSrd1pU
+
+Let's start by declaring EventEmitter object.
+And we would use const because it's not going to change,
+and we would import events module.
+Then we would create a class job
+which would really extend EventEmitter class.
+The job instance would be created from this class,
+and you can see the class is empty.
+All we needed, just to extend events.
+And then, we would set up an event listener or observer,
+and we'll be listen for the done events,
+and it will have
+a callback function with an argument timeDone.
+So we can accept arguments such as time,
+and we would just console.log it.
+And then on line 10,
+we would emit that event,
+emit event call done,
+and we would pass the new date,
+the current time stamp.
+And we can also remove
+all event listeners on line number 11. So let's save it.
+And now, we can broaden it
+by going into the folder where we have this project,
+which is module one,
+in and lesson six.
+So we can see that we have this files simple.
+So, we would type node simple not simple.js.
+And immediately, you would see the output,
+job was pronounce done at a certain time.
+So, what happened, it created a class
+set up an event listener for the done,
+and then, immediately triggered
+that event and finished the process.
+You might be wondering, well,
+I can accomplish that with just a callback or I
+could immediately do a console.log.
+Wait a second, we will get
+to a little bit more complex examples,
+and you will see the benefit of using EventEmitters.
+
 
 ### Understanding Event Emitters
 
@@ -1299,7 +1470,75 @@ The result will be:
 
 # Video: Multiple Event Triggers
 
-TODO: Missing video
+https://youtu.be/WZOy4gb09XM
+
+Let's import the module just as
+we did in the simple that simple.js example.
+It's a core module, we don't need to
+import anything but then,
+we don't need to download anything with the npm.
+It's available,
+this core module advance is available to us.
+Class name could be different.
+So let's name it emitter.
+It's an empty class you can put something like
+some attributes or properties
+like methods but we don't need.
+Everything that we need will be coming
+from the emitter object.
+And now, we're setting up two event listeners,
+The first would be knock.
+That's event name, and the output,
+the callback function would be, who is there?
+The second would also be knock.
+So, we have two event listeners
+listening for the same event.
+In this callback, let's put something different.
+For example, go away,
+who is there? Go away.
+So, someone is knocking on your door.
+And now, we are emitting that event.
+We can emit it twice.
+Every time you emit it,
+both of the event listeners of
+the observers they would be triggered.
+So first, the code will be triggered
+on line seven and then on line 11,
+that's for the first to emitter,
+the first event which has been emitted.
+And then, same thing would happen for the second emitter.
+So let's verify it.
+Let's see what the actual output is.
+And of course, you need to save
+a file if you see the circle.
+I didn't save the file,
+so now I saved it and run it again.
+So you can see who is there?
+Go way! Who is there? Go away!
+So you can see that the order
+in which you define those event emitters matters.
+You remember that function from the previous example so,
+the result should be that we would not see
+the second output now because
+the event listeners would be removed.
+And in fact, that is exactly what has happened.
+First on line 14,
+we emitted the event,
+it got caught by two event listeners,
+then we removed the event listeners and
+then that event was emitted again.
+Those events weren't triggered.
+So you can see we have a lot of
+control and actually the power,
+the real power comes when these three lines,
+they are somewhere else,
+they're not in the same file,
+and you are declaring
+your event listeners in a different place.
+It could be also different from where you define
+your class and that's what
+we will see in the next example.
+
 
 ### Multiple Event Triggers
 
