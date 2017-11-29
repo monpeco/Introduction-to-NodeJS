@@ -1607,7 +1607,99 @@ The result will be:
 
 ### Modular Events
 
-TODO: Video Missing
+https://youtu.be/LAuRVwpGQi8
+
+We've covered two examples of how to
+use event emitters and now let's
+take a look how we would
+use them in a more realistic scenario.
+Let's say, we have a file called job.js,
+it's a module that will perform certain tasks.
+Maybe it's sending emails, and then,
+there are three types of emails,
+three types of jobs that you can do.
+So you want to have that ability to
+customize what is happening when his job is done.
+Again, we are creating a class
+by extending from event emitters.
+And as you know, in ES6,
+we know we have the constructor in ES6 class syntax,
+so we need to call super inside of constructor and we can
+use this keyword to set up an event listener.
+This.on('start', so that would be our event.
+So once start is happening,
+we would call process.
+Process it's a method,
+and we need to define it obviously,
+so, we define it as a set timeout.
+So maybe it's asynchronous operation
+that will take some time.
+So we are emulating
+the delay that the job will take some time.
+It's asynchronous.
+And then when that something is done,
+the job is done,
+the set timeout has a callback,
+we would emit using this.emit.
+So this, we can do the inside of this callback,
+because it's a fad or a function,
+and we would pass the the timestamp,
+and we would export
+the entire class, module.exports equals job.
+So let's go ahead and save it.
+This file would actually consume
+our module, the job.js file.
+So first of all, we would
+import whatever functionality we exported,
+and we would point to a file in the current folder.
+Then, we can start using by instantiating this class.
+And then, we would set up
+the done event listener or observer.
+And this is how we can customize what
+the output will be when this job is finished.
+So the actual, the last piece of code that is executed,
+it's not in the modules, it's not hard-coded.
+We have the ability to customize it in our weekly.js,
+or maybe we have a daily job or we have a monthly job,
+we have that ability to customize it because
+now the module is very flexible.
+Again, we can remove listeners.
+We can also invoke job.process,
+but a better way would be not to call it directly,
+but emit another event which I start.
+So we can emit multiple events,
+we can emit events in the module,
+we can emit events in a program which is
+weekly.js itself and also,
+we can set up those event listeners in a module,
+but we also can set it up in a completely different file.
+So let's go ahead and save this.
+And now, let's go into our folder, which is modular.
+This is the folder where we have job and weekly,
+and now we can run our weekly job by
+typing node space weekly.js, and pressing enter.
+So you notice there was a delay of almost a second.
+Let's do it again.
+Okay, again, you saw the delay and just saw this code
+which is outputted from weekly.js.
+But the way it's triggered,
+thanks to this event emitter which is
+happening in the module and vice versa.
+We are starting them,
+the entire job, which is in the module,
+not by directly calling job.process,
+but by emitting an event start.
+And this event start it has an event listener,
+which is calling this.process.
+So you can see, event listeners,
+they're very flexible, you can call them at the end,
+in the middle, you can call them many times,
+you can remove them,
+have a lot of options.
+it's not a... promises and async await functions
+are not a replacement for event emitters.
+Event emitters is way more powerful pattern.
+Thanks for watching. I'll see in the next lesson.
 
 The observer pattern is often used to modularize code. A typical usage is to separate the event emitter class 
 definition and the event emission into its own module but allow the observers to be defined in the main program. 
@@ -1668,7 +1760,90 @@ Documentation: https://nodejs.org/api/events.html
 
 # Video: HTTP Client with Core http
 
-TODO: Video Missing
+https://youtu.be/JD_DDiFDZCY
+
+>> Welcome to another example.
+In this example, we would implement an HTTP agent,
+HTTP client, which will make and get request.
+First, we will start with importing core HTTP module.
+It's not an npm module it's a core module,
+meaning, we don't need to install it with npm.
+It's already part of the platform.
+And the second line we would define
+a URL. That's our target.
+That's from where we would be
+downloading the content the HTML.
+You can change this URL to whatever
+you want as long as it's a valid URL.
+http.get that is our method.
+It takes two arguments, URL and response.
+And then, inside we would define a C,
+which is a counter and responds that on data.
+Counter is for how many times this on data will be
+triggered and it will be triggered many times,
+because we will be getting and processing,
+console logging the data piece by piece.
+Then, responds.on ('end',), that's very final event.
+When the entire response has been completed,
+we would just output the number of C,
+the value of the C which is our counter.
+How many times the on-data response was triggered.
+And then, one more event listener but
+this time it goes on http.get.
+It's not going on the response.
+So it's a different nature.
+This error would fire if
+the URL is not valid or connection is not valid.
+It will not be actually inside.
+For example, 500 error would not be part of this process.
+We can have one more event listener
+inside if you really want to on the response.
+But, that's good for now.
+Let's go ahead and run this example.
+You need to be in the same folder
+in which you have this file.
+This is my file. So, that looks all good.
+I need to save it of course.
+So now it shows
+the right size before it was showing zero,
+if you notice it.
+Now, I will just go ahead and type node space
+http-get-no-buff or I already
+have it in my history and press enter.
+It went pretty fast, so,
+with a naked eye you probably didn't notice
+but there were many calls to the on-data. How do we know?
+Well, you see this number seven.
+Seven times this piece of code has been called,
+this callback, chunk C++
+and then console.log (chunk.tostring).
+So this is one of the ways
+how you can process big data, large responses.
+You don't need to wait for the entire thing to finish.
+You can start processing it.
+This is the default pattern.
+We're using event mirror to respond that on data.
+Let's run it again and see if there are any differences.
+So now, that on data was called only six times.
+Let's try it again. Seven times.
+Again, six times.
+So sometimes you would get
+smaller number for example, four.
+So, maybe it depends on the network
+because it's outside the URL, it's not a localhost.
+Maybe on some other factor but the number might vary.
+So this is it for this example.
+We didn't use a buffer variable.
+So the chunk is a type of buffer with the capital B.
+But what I'm saying a buffer variable,
+it's a temporary variable
+in which we are storing all the chunks.
+So in the next example we would do exactly that.
+But in this example we didn't use it,
+that's why it says, http-get-no-buff.
+So that's it for this video.
+Let's go to the next example.
+
 
 ### HTTP Client with Core http
 
