@@ -2116,3 +2116,198 @@ response of the request.
 
 ---
 
+#### Node Core   HTTP Server with Core http   Video: HTTP server with core http
+
+# Video: HTTP server with core http
+
+https://youtu.be/GWp69yPHbXE
+
+>> Welcome to another lesson.
+Let's create a file server.js which will
+have funny enough server, HTTP server.
+And of course, we're using core HTTP module.
+We would create a variable HTTP.
+HTTP equals require HTTP.
+Then, we would create another variable port equals 3000.
+And we would invoke a method http.createServer.
+It would have one call back,
+just one function with request and response arguments.
+We can use response or res to output data to a client.
+So we can set the header,
+we can set the status to 200 which means okay.
+And then, we would finish it,
+complete the response by saying res.end( 'Hello world).
+We would invoke listen,
+to boot up our server on
+a specific port 3000 in our case.
+And it's nice to output a message,
+server is running at a local host port 3000.
+I'm using ES6 trim templates,
+dollar sign currently breaks port.
+So, that's all we're doing.
+Every request will go and execute this part of code.
+So, for every request,
+it doesn't matter what HTTP method,
+it doesn't matter what URL we are,
+what content type is there for the incoming requests.
+It's always going to be those two lines,
+line number four and line number five.
+So, let's go ahead and run the server.
+You need to be in the same folder.
+And let's say the file.
+So now, the size will be increased.
+So, the size is good.
+Nodeserver.js.
+Immediately you see the message,
+it started, that's a good sign.
+Now, I'm opening another terminal window,
+curl localhost: 3000,
+and I'm seeing my output, Hello world.
+You might be wondering while, what happened?
+I thought you closed the server?
+No. It's actually still running,
+just in a different terminal window.
+So, as long as you keep your server running,
+you should be getting hello world responses.
+It doesn't matter what is your URL,
+what is your path.
+As long as you're hitting the same domain,
+which is local host in this case,
+and the same port number,
+transactions, account, the path could be different,
+the query string could be different.
+It doesn't matter, every
+time we are outputting the same thing.
+Now, what if you want to see more information?
+You can add -i,
+and this will tell you the content type.
+The content type is text/plain.
+So, you can change it to be text/html.
+It's not a problem.
+Or, application/ json. But you see,
+it still remained text/plain.
+So if you scroll up, still text /plain.
+So, what is that?
+I save the file,
+I changed the code. What is happening?
+Well, the way Node.js works,
+you actually need to terminate this process.
+It's a long running process.
+Meaning, it's not stopping until it
+crashed or stopped by a developer.
+So, I just stopped it by pressing control C. Now,
+I started again, and this time,
+my server will have the new code.
+It would not have the old code.
+So, node process the north platform
+keeps the code in the memory.
+So you can see it's a text/html now, it's not text/plain,
+because we changed the server code which has been run,
+it's been loaded to the memory by
+stopping the process and starting it again.
+So now, let's go to the text/plain again.
+Text/plain and finish it up,
+star it again, and make a request.
+So now, it's text/plain,
+before it was text/html.
+Can also add v. Which stands for verbose.
+It will have even more output
+about our request and response.
+So, we see status 200,
+now we can change the status to 201, as well.
+Don't forget to restart the server,
+and we can submit another request.
+So now, it says 201 which is created.
+So verbose is too much information,
+let's keep it at i.
+In order not to always restart this process,
+you can install something called node-dev@latest.
+Don't forget to add
+the dash -g symbol which stands for global.
+This tool will allow you to basically not
+worry about restarting your server files.
+You can just leave it like that, go ahead,
+change it to 200, save it,
+and you see, it restarted your server automatically.
+You can see this message restarting.
+So, you always have the fresh code.
+And now, if I go and make a request,
+I should expect status 200.
+Which it is status 200, means it's okay.
+So, use node-dev, there's another service.
+There's actually few of them forever.
+Nodemon, pm2-dev.
+You can use any one of them.
+Just remember either to use
+a tool like that or to manually
+restart it every time you make a change.
+
+
+### HTTP server with core http
+
+Although Node.js can be used for a wide variety of tasks, it’s used primarily for building web applications. Node.js thrives 
+in networking as a result of its asynchronous nature and built-in modules such as net and http. Node is great for building 
+fast and efficient web servers.
+
+Here’s a quintessential Hello World example in which we create a server object, define the request handler (function with 
+req and res arguments), pass some data back to the recipient, and start up the whole thing (server.js):
+
+```node
+const http = require('http')
+const port = 3000
+http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'})
+  res.end('Hello World\n')
+}).listen(port)
+
+console.log(`Server running at http://localhost:${port}/`)
+```
+
+Let’s break it down a bit. The following loads the core http module for the server:
+
+    const http = require('http')
+
+This snippet below creates a server with a callback function which contains the response handler code:
+
+    http.createServer((req, res) => {
+
+To set the right header and status code, use the following:
+
+    res.writeHead(200, {'Content-Type': 'text/plain'})
+
+To output Hello World with the line end symbol, use:
+
+    res.end('Hello World\n')
+
+The req and res arguments have all the information about a given HTTP request and response respectively. In addition, req 
+and res can be used as streams (see previous section).
+
+To make the server accept requests, use the following:
+
+    }).listen(3000)
+
+In the terminal, navigate to the directory in which you have server.js and run the following command to start your server:
+
+    node server.js
+
+Now that the server is running, you should be able to navigate to localhost:3000 in a browser and you should see Hello World. 
+To shut down the server, enter Ctrl + c in the terminal.
+
+The callback function in the createServer method is called each time there's an incoming request to this server.
+
+You can also use curl to get the response from the server in the terminal. To do so, keep the terminal / command prompt 
+window open to keep the server running. In another tab or window of your terminal / command prompt, run the following 
+curl request:
+
+    curl http://localhost:3000
+
+The curl request should return the header and content that is sent from the server.
+
+Full documentation for the http module: https://nodejs.org/api/http.html and https://nodejs.org/api/http.html#http_class_http_server.
+
+Note: to install *node-dev*:
+
+    npm i -g node-dev@latest
+    
+---
+
