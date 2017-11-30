@@ -1710,7 +1710,7 @@ the event handler of the observer to do whatever we want once a done event is tr
 
 **job.js:**
 
-```
+```node
 const EventEmitter = require('events')
 class Job extends EventEmitter {
   constructor(ops) {
@@ -1732,7 +1732,7 @@ module.exports = Job
 
 **weekly.js**:
 
-```
+```node
 var Job = require('./job.js')
 var job = new Job()
 
@@ -1946,3 +1946,173 @@ The result of running this script would be the parsed JSON object. The parsing n
 try/catch to handle any failures that may occur due to mal-formated JSON input.
 
 ---
+
+#### Node Core   HTTP Client with Core http   Video: HTTP client Post request
+
+# Video: HTTP client Post request
+
+https://youtu.be/RHm0H8y0b6Q
+
+>> In this file, http-post.js,
+I'm making a post request.
+The syntax is very similar to how we would
+make http.get and the idea is also similar.
+We are using response dot on data,
+response dot on end.
+Just instead of the response,
+I'm using res as the name of
+my variable and then http.request.
+That's what I'm using because it's
+more flexible, it's more powerful.
+I can provide options which has the method,
+in this case it's post,
+it's not just get.
+I can also provide headers,
+content links, content type.
+This is what I'm sending.
+I can also provide the path, port,
+and the host name, which is typically just one variable.
+It's just to your route, but in this case,
+I split it into three,
+because I'm using this syntax and http.request.
+This is my data.
+I'm passing full bar and
+I'm also listening to the error request dot on error.
+So, this is exactly the same thing
+as just chaining dot on error to the http.request.
+But I am just using an extra variable.
+The idea is the same.
+And then I'm writing req.write(postdata).
+So what this will do,
+this will actually start sending the data.
+This will start sending
+the data and then I need to finish my request.
+OK. So this is my data,
+post data is the data
+in the post request which I'm sending.
+But I also have the response.
+This is the response which is coming later,
+that's why it's in the call back to the http.request,
+and I'm using the same event emitter pattern.
+So let's go ahead and test it.
+Mockbin if you haven't used it or haven't heard about it,
+it's a url for marking restful endpoints.
+So, it's sandbox or like a playground url
+which service and url which we can use
+for our example, node http-post.js.
+And I'm getting the response.
+This is my response.
+So basically they echoed back my data.
+In the queryString I also had
+some information encoded in the queryString.
+Typically you would send
+some API keys for authentication.
+So go ahead and check out mockbin,
+it's a pretty cool service.
+Allows you to prototype and test your request.
+In this case, again we are using core http library
+to make the post request before
+we would make a gate request to read the data.
+Post is typically for creating resources of entities
+to submit some data,
+also to upload files, not just binary data but also files.
+In the next file https-json-get.js,
+I'm making an https request. What is https?
+It's a secure ssl connection and also a url.
+So in a secure url, https, I'm using just from GitHub,
+is basically a hidden url,
+hidden because it's not listed anywhere.
+And as the file I have some data.
+I have some data which is sourced by
+this service from GitHub.
+And if you can see,
+the code is pretty much the same as I had
+before, only big difference,
+I'm using a different library, it's https.
+So it's not http anymore, it's https.
+That's the all difference,
+everything else is just the same.
+And then remember it's a JSON, right, so it's a JSON.
+It looks like a txt file,
+but the file's name doesn't really matter believe me.
+If you go to that url in your browser or
+make a colored request, it's going be JSON, okay.
+And it's a get, get over JSON,
+so that's why we need to save it,
+save it in this buffer variable broad data.
+The name doesn't matter,
+what matters is that we are not processing the chunks
+one by one, we cannot, because its a JSON,
+we need the entire thing. And remember JSON.parse
+will crash your application,
+so that's why we need to wrapt it in the tri catch.
+Wrap it in the tri catch and you get your nice object.
+So let's go ahead and run it.
+Https, it took quite a lot of time because it was a big,
+big, big, big file.
+I have thousands of records there and it printed it,
+it didn't print all of them, it printed only
+a hundred but it took quite a lot of time.
+Let's do it again.
+Okay, this time it's better.
+So, you get your ds, so if you are doing
+JSON thing you need to concatenate plus equals.
+It's the same as rawdata equals rawdata plus chunk.
+So we can concatenate chunk by chunk, part by part.
+Sometimes it's just a line of code or there's parse,
+sometimes it's more. So that's it.
+You've learned how to make a post request,
+how to process JSON, straight average time out,
+how to use a buffer variable,
+how to not use it to make http and https request.
+
+
+### HTTP client POST request
+
+So far we have been using GET requests to receive data from a server. GET requests are able to be used to receive 
+data but you can not send data with a GET request. In order to send a body of data with a request you must use a 
+POST request. POST requests are generally used to upload data or to send data to be processed and returned.
+
+The http core module methods allow you to specify what type of request you want to make. To do so, first create an 
+options object and set the method attribute to the desired request type (‘POST’, 'GET', etc.). Then, use the 
+options object as the first argument when calling `http.request()`.
+
+The following code from http-post.js uses an options object to specify that it is trying to make a POST request:
+
+```node
+const http = require('http')
+const postData = JSON.stringify({ foo: 'bar' })
+
+const options = {
+  hostname: 'mockbin.com',
+  port: 80,
+  path: '/request?foo=bar&foo=baz',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': Buffer.byteLength(postData)
+  }
+}
+
+const req = http.request(options, (res) => {
+  res.on('data', (chunk) => {
+    console.log(`BODY: ${chunk}`)
+  })
+  res.on('end', () => {
+    console.log('No more data in response.')
+  })
+})
+
+req.on('error', (e) => {
+  console.error(`problem with request: ${e.message}`)
+})
+
+req.write(postData)
+req.end()
+```
+
+As a result, the script will send the data to the server (mockbin.com) in a POST request, and output the 
+response of the request.
+
+---
+
