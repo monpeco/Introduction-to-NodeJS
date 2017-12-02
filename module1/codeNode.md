@@ -2311,3 +2311,169 @@ Note: to install *node-dev*:
     
 ---
 
+#### Node Core   HTTP Server with Core http   Video: HTTP Request
+
+# Video: HTTP Request
+
+https://youtu.be/n_Mbaf6vpro
+
+>>Welcome to the second example.
+In this example, we would implement server request body.
+So, first of all we import HTTP,
+our core HTTP module and we
+define the port variable which is, port 3000.
+Then we would create a server object, create server.
+And again we are providing the request handler,
+which is a callback function with
+two arguments, request and response.
+You can use req, I prefer to spell
+it out once in a while as well request,
+and then response or res.
+Inside, we have all the information we need.
+We have headers, method,
+URL and the path of the request.
+So, that's the incoming request,
+the request which is coming to our server.
+So, we can process,
+we can extract, we can access that information.
+That information is coming from a client,
+we are building a server.
+Right? And that obviously
+will be triggered on every request,
+every incoming request will have a different information.
+Then, if request method is post,
+so we are processing the post,
+it could be a file upload,
+it could be someone sending us JSON data.
+And why I'm using a variable,
+the buffer variable request.ondata,
+I'll be receiving the chunks of data,
+I would not be receiving the data right away,
+so that's why I'm using that temporary variable buff.
+And then request.onend function,
+when everything is over I can print back my body,
+the body of the incoming request.
+Another name for that is the payload, response.end.
+So, it's very important to also finish our response.
+This is the response for the client,
+so we need to send some data,
+something like, Hey, I have accepted the body.
+And then, if this is not a method post,
+then let's output some friendly message,
+we can output status 200 and
+the counting type could be just text plain,
+means it's a plain text, it's not HTML,
+it's not a JSON and responds.end,
+Hello world, already familiar to you, Hello world.
+Then.listen similar and method.listen
+and the port value is 3000.
+So, let's save this file.
+I need to make sure I'm in
+the right folder and it's lesson number eight.
+Okay, great.
+So, this is the folder where I have my file,
+as you all know you can launch server code nodes,
+node js server code by
+typing node space and then the file name.
+So, let's make it run.
+So, we don't have a console log here
+unlike in the previous example
+in which we have a console log,
+so that's why there is no output.
+But it doesn't mean
+that it's not working, it's actually working,
+I'm sure about that,
+because we can make a request.
+We can make, curl post localhost port 3000.
+Now, I don't send the data with this curl,
+but let's see what the response would be.
+So, I still get the response
+and then on the node-js side,
+this is the data that I'm getting.
+So, this is coming from my console logs.
+I have headers, I have a method which is post,
+then the status code is null and then for URL,
+it's just a slash and the body is empty.
+Okay. So, that looks good.
+If you want to actually send some data,
+there is -d flag and it's using URL encoding.
+URL encoded syntax like this.
+So, let's go to our server.
+And yeah, so this is our body.
+You can also send the JSON data but
+it's going to be a different option.
+If you want to send JSON again -d but value
+now it's JSON string and if you go back,
+this is my output,
+so you would get the JSON string back.
+Remember it's not an object,
+so you would need to use json.part,
+just as we used in the HTTP get client.
+Get for JSON and so that's pretty much it.
+So, this is our server,
+it accepts posts requests,
+get requests, it accepts all kinds of requests.
+And we can build any type of server now because you know
+how to process and how to extract information such as;
+headers, methods and URL.
+
+### HTTP Request
+
+The HTTP server request object (do not confuse this with the client request object) has all the 
+information about the incoming request to our server. Some examples include headers, URL, HTTP 
+method names and of course the request body (payload). Here's the list of main properties:
+* `request.headers`: Information about incoming requests headers such as Connection, Host, Authorization, etc (see list here)
+* `request.method`: Information about the incoming requests methods such as GET, POST, PUT, DELETE, OPTIONS, HEAD, etc.
+* `request.url`: Information about the incoming request URL, such as /accounts, /users, /messages, etc.
+
+All values are accessible in the request handler callback. For example, you can print the values like this:
+
+```node
+const http = require('http')
+const port = 3000
+http.createServer((request, response) => {
+  console.log(request.headers)
+  console.log(request.method)
+  console.log(request.url)
+  response.writeHead(200, {'Content-Type': 'text/plain'})
+  response.end('Hello World\n')
+}).listen(port)
+```
+
+The result of this script will depend on what requests are coming. Each request will trigger the output of 
+its headers, method, and the URL.
+
+### Processing Incoming Request Body in the Server
+
+To process the request body, use the same event emitter pattern as with the request client. Listen to the data 
+event and collect the incoming payload using a buffer variable (buff). Take a look at server-request-body.js:
+
+```node
+const http = require('http')
+const port = 3000
+http.createServer((request, response) => {
+  console.log(request.headers)
+  console.log(request.method)
+  console.log(request.statusCode)
+  console.log(request.url)
+  if (request.method == 'POST') {
+    let buff = ''
+    request.on('data', function (chunk) {
+      buff += chunk  
+    })
+    request.on('end', function () {
+      console.log(`Body: ${buff}`)
+      response.end('\nAccepted body\n\n')
+    })
+  } else {
+    response.writeHead(200, {'Content-Type': 'text/plain'})
+    response.end('Hello World\n')
+  } 
+}).listen(port)
+```
+
+The result of this program (server-request-body.js) would be a server which accepts POST requests and prints the request body in the server logs.
+
+---
+
+
