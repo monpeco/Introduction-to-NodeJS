@@ -2522,6 +2522,312 @@ Documentation: https://nodejs.org/api/http.html#http_class_http_serverresponse
 
 # Npm basics
 
+https://youtu.be/66e4uMYsw_E
+
+>> So let's go ahead and start by creating
+a new folder, npm project.
+The name doesn't matter as long as
+just a brand new folder.
+And let's double check.
+So there is nothing in this folder.
+I always like to start
+my projects by creating package.json.
+You can run npm init and press enter.
+It will ask you a few questions.
+You can just press enter to all of them.
+And then type yes.
+That will create package.json file.
+And if you look inside of this file,
+these would be your answers.
+And I just pressed enter,
+so they are default answers.
+Now, let me remove
+this file and show you another way how you can create
+package.json which has npm init
+with a white flag for stands for yes.
+Basically, you answer yes to all the questions and
+that's exactly the same file that we had previously,
+only, you don't need to press enter.
+It just sets all the default information
+there in your file.
+So we have our package.json,
+and that's a good way to start your project.
+Every project probably will need dependencies.
+What are dependency? Dependency is
+something that you would require.
+You would import it using ES6 module syntax,
+or you would require it using the Node.js syntax.
+So you would require, you would import those files
+in your source code.
+That's why they're called dependencies.
+So you can use npm install and then the name of
+the file, for example, express.
+Or you can use npm i and
+then the name of the module, for example, express.
+In both cases, the result would be similar.
+So most of the npm commands they have the full spelling,
+and then they have the shorter spelling.
+Let's leave it running.
+And then we would see an interesting thing.
+We would see that what npm did,
+it added it to this dependencies property.
+And it added the version number.
+But it has this caret symbol.
+So npm five, what it's doing?
+It automatically adds all the packages which
+you installed with npm install to the package.json,
+as long as you have that file package.json.
+Now, the caret is not a good idea.
+Why? Because the caret means it could be
+four point eighteen, four point twenty.
+It could be a different version.
+We don't want that. How we could mitigate it?
+So we could say dash dash save exact
+or the short version would be dash E,
+stands for exact, save exact.
+This would eliminate that pesky bad behavior
+of the caret symbol.
+So now you see there is no caret symbol here,
+but you can see in the previous version,
+we had it, in the previous package.json.
+So that's good.
+Some of the other information in package.json.
+So you have the licensing information,
+npm scripts, version, name.
+So the name and the version,
+they're probably the most important.
+You can bump up the version by using npm version patch.
+So patch, it's the extreme right number.
+The middle number, it's called minor,
+and the left number is called major.
+Npm version patch will bump up the number by one.
+So you don't need to manually
+add it to this file which is nice.
+So you can see, now it's one point zero point one.
+You can say npm version major,
+that would be the extreme left number.
+So you've installed express.
+So what actually happened?
+We have now this folder called
+node modules. So node modules.
+We also have package lock.
+Package lock has the dependencies of dependencies.
+It's a nice way to prevent
+unnecessary updates and unexpected behavior.
+Let's look into the node modules folder.
+It has lots of folders, right?
+We just installed the express,
+but what are all those folders?
+Well, they're actually dependencies of express.
+So if you look in the package.json inside of express,
+we can do it by saying node_modules/express/package.json.
+You will see that express
+itself has quite a lot of dependencies.
+It has dev dependencies and
+it also has normal dependencies.
+And some of them, they're using
+this tilde sign which means it's an approximate version.
+So again, they're not locking those versions,
+which means if there
+are break in changes in the new versions,
+that is going to be a problem in your project if you
+don't have a shrink wrap or a package lock.
+So those are dependencies of
+our dependency, ls node modules.
+And what actually happens
+if now we want some of that module,
+for example, qs stands for a query string.
+So let's look what version they're using.
+What express needs.
+Actually, let's cat it.
+So the version of qs is version six.
+Another way to see the dependence history
+is to use MPMLS.
+So if we go and search for qs,
+that should be on the first level,
+and here it is.
+So six point five point one.
+So now, let's pretend we need
+qs of an older version, version five.
+By the way, you don't need to specify entire version.
+You don't need to say like five point zero,
+you can just say five and it will get you
+the highest version five. Press enter.
+So what happened now?
+Our dependency, the qs
+which was version six and it belonged to express.
+Now, it moved into a different folder.
+The qs which is our direct dependency,
+it's on the first level and then inside of express.
+So if you follow express,
+that's not even dependency of express,
+it's dependence of the body parser.
+Interesting. And we can
+do a ls node_modules/express/node_modules,
+and this folder will have qs.
+So this is version six.
+You can verify it by going into
+the package.json of this folder,
+but you can also trust me because I did it before.
+And then, if we go and
+search for this version, nodes version five,
+so this is the module which we installed
+manually and it's our direct dependency.
+So let's go ahead and also see
+what we have in our package.json.
+So qs, remember, I didn't use E,
+I didn't use save exact.
+That's why we have this caret.
+So let's remove it.
+So you can see that npm
+might have different results depending on your order.
+So sometimes, it's just nice
+to remove this folder completely,
+and then rm rf will remove the folder and
+then you can always recreate it
+by just typing npm install.
+Npm install will read from your package.json.
+Of course, you need to have those entries,
+that's why npm by default.
+Now, save those entries in your package.json.
+And now, we have recreated the dependencies.
+So we can run our application
+and see if it's still working.
+Of course, right now, we don't have an application,
+but you can imagine that if we have an application,
+we can test it with the freshly installed dependencies.
+So you can see that it's not
+a good idea to go and delete manually these folders.
+You can absolutely do that.
+But what if there is another module
+which depends on this module, right?
+The best way to get rid of a module is to use npm rm,
+npm rm qs or uninstall.
+Uninstall is just a longer name,
+but they both would work.
+And let's use S which stands for save which will make
+sure it gets removed from package.json as well.
+And then we cat the package.json,
+and we can see qs is gone now, which is good.
+So we installed a module, we removed it.
+We also installed all the modules from the package.json.
+So you don't want to commit your node modules.
+You want to put it in the gitignore file,
+don't commit it to a version control system.
+We can just commit package.json
+and then other developers that
+would do npm install or npm i without any names,
+that will just go and read from package.json
+and make sure those packages have been installed.
+Another things is the settings.
+Npm config list will give you the list of settings.
+Another name is npm config ls.
+Those settings can have things
+such as some initial values,
+they could have some proxy settings.
+If you're working under corporate proxy,
+you would pull the settings here.
+You can see my email,
+you can see some other configurations.
+Those are npm configs.
+You can specify them in the file,
+or you can use the command line.
+This is how to use the command line.
+Set and get would either define
+the value or get the current value from the key.
+You can, of course, delete it, you can edit it.
+So anytime you are in doubt,
+npm space dash H will give you the list of commands.
+But actually, it's help, npm help.
+So you can see these are the main commands.
+Link, it's mostly used for
+when you're building command line tools.
+Run, that's for npm scripts.
+Npm star, npm test,
+so all are useful commands.
+Npm publish, that's for when you're publishing a module.
+So let me explain to you about the global installation.
+So dependencies,
+they're packages which you are requiring,
+you requiring them in your call,
+but some packages, you don't need to require.
+They're just command line tools
+such as static server for example.
+This is a static web server,
+and the name for the static web server is node static.
+So npm install dash g node static.
+So what is happening?
+This dash g, if I don't do it,
+it becomes a local installation.
+If I do dash g, it becomes a global installation,
+meaning it will install it in a special global folder,
+and it also tells you what folder that is.
+So users/azat/nvm,
+I'm using nvm which is node version manager,
+and allows you to switch between versions easily
+without having to install and reinstall them every time.
+And then for that particular node version,
+that's my folder, my global
+folder for my own installations.
+So I can jump into
+any project and still use this command static.
+It's not bound to a particular project,
+and I'm not requiring it in my source code.
+So that's the big difference.
+You almost never install
+dependency with a dash g. So express,
+you would never install express with the dash g.
+Even some of the tools such as mocha,
+you would still install them locally.
+So let me demonstrate it to you.
+Install mocha.
+This will also because I'm using npm version five.
+So npm version five by default
+creates entry in my package.json.
+I need to use cat.
+So this is my mocha file.
+But the mocha file is not global.
+So if I type mocha, it would say,
+so I don't have it globally,
+but you can still see that it tries to launch it.
+So how does it work?
+Well actually, I have
+this hidden folder inside
+of node modules, it's in the bin.
+So every global tool which you
+install locally will be put in this folder.
+And I have a special setting in my bash script,
+in my bash profile,
+which exposes this path in every project, right?
+If you don't have it, you can
+just simply type node_modules/.bin/mocha.
+And that will launch
+any command line tool
+locally from your local installation.
+So I recommend install everything locally.
+Never install anything globally
+unless you really don't care about the versioning,
+something simple like a static web server.
+So mocha, if you install it locally,
+you can use different versions
+of mocha in different projects.
+For the static web server,
+I don't really worry that I have a different version
+because they're not going to change that much.
+So we installed things locally, globally,
+we used package.json, created package.json.
+So let's also take a look at the package lock file.
+So obviously, it will have a lot more entries,
+and it also has checksums to verify integrity.
+It has precise versions, exact versions.
+So this will allow you to avoid
+any unexpected consequences when some of
+the modules get uploaded.
+So that's it for this lesson,
+and I'll see in the next module.
+
+
+
 ### What is npm?
 
 npm comes with the Node.js platform and allows for seamless Node.js package management. npm (all lower case) consists 
