@@ -3094,3 +3094,83 @@ To remove the setting (config), there's a npm config delete <key> command. For e
 npm config delete email
 
 ---
+
+#### Node Core   Summary of Module 1 Node Core   Summary
+
+# Video: Summary of Module 1: Node Core
+
+TODO: missing video
+
+>> Wow. That was a lot of lessons.
+But I'm sure all of them are important because they will
+build a solid foundation
+when you move to a more advanced topic,
+when you start using frameworks,
+start using different libraries.
+For example, how would you use
+a library if you don't know how to use npm?
+Right? So, npm command line interface,
+how to install a module,
+how to remove that, it's very important.
+Some other topics that we've learned.
+How to create a module,
+using module.exports and then how to import
+functionality using require functionality
+either from an npm module,
+a core module or your own JavaScript file.
+Other topics that we've
+covered revolve around core modules.
+So we've covered fs,
+which is a file system module.
+You can create a file,
+read from a file,
+then write to a file or, even delete a file.
+We covered path, which is
+a module that allows you to work
+with path names and
+make your path names cross compatible.
+And then we dived deeper into the core HTTP module.
+We build a client,
+so we can make any HTTP requests
+to pretty much any website or a service.
+And then we also build our own HTTP server
+using exactly the same core HTTP module.
+So, as you can see, node at its core
+has a lot of modules and a lot of useful mechanisms,
+so you can build servers,
+you can build clients even
+without having to use any libraries.
+But of course, most developers use frameworks and
+libraries because they do
+a lot of things automatically for you.
+You don't want to reinvent
+the wheel in most of the cases.
+That's why in the next modules we will cover
+some of those libraries and framework, such as express.
+So, thanks for sticking with this module,
+I know it's been rather lengthy module
+but it will pay off in the future.
+Next three modules will be shorter and more concise.
+So, I'll see you in the next module.
+Thank you for watching and I hope you
+had a great solid foundation of node.js.
+
+
+### Summary of Module 1: Node Core
+
+In this module, you've learned a lot of good foundational topics. Here are some of the key things to remember:
+
+* There are Node.js installers for various platforms
+* For contributing to Node and for platforms not supported by Node installers, developers can fork and/or clone the Node GitHub repository and compile Node.
+* Node.js comes installed with npm
+* There are three ways to run Node code: REPL, eval CLI option and launching a Node file.
+* To access CLI arguments, use process.argv
+* To access environment variables, use process.env
+* To import and export Node files, use require() and module.exports respectively.
+* To write cross-platform file paths, use path.join().
+* To implement HTTP clients and HTTP servers, use the http core module.
+* To start a new project, run npm init to create a package.json file.
+* To install and remove a local npm module to/from a project, use npm i {package-name} and npm rm {package-name} respectively.
+
+
+---
