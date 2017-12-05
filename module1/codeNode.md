@@ -3336,3 +3336,202 @@ url.txt within the folder and that the html data is saved within file.html:
 Congratulations! You are done with the lab.
 
 ---
+
+#### Node Core   Module 1 Tutorial Lab Node Web Crawler   Video Walkthrough and Solution
+
+### Video: Node Web Crawler Tutorial part 1
+
+https://youtu.be/c8y2YvLvAXA
+
+>> Welcome to module one lab one. In this lab,
+I will explain you and demonstrate to you
+how I implemented this web scraper.
+What is a web scraper?
+So, basically, you have a scrape,
+it goes and downloads some information such as HTML or
+any other information out there on
+the internet based on the URL which had gifts to you.
+So, you can download a website and HTML page.
+And we're using const http method
+and fs which is another core.
+Module fs stands for
+a file system that will allow us to create files.
+So we'll be saving data into the file.
+Path, it's another core module,
+uuid/v1 that is sudden NPM.
+It's not a core package.
+We have a package today since we will install
+that module using NPM in a few moments.
+But now, let's write the script.
+It will have the main function downloaded page
+and that function will take the URL,
+If that URL is not provided it will use nodeprogram.com.
+It's my web site, static web site.
+I know it's always available.
+So that's why I'm using it as an example.
+Folder name, so this would be the folder name.
+I want to have always
+a unique folder names
+because when I run the script again,
+I still want to download that result.
+So I will be always creating new folders.
+And I'm using mkdir for that.
+So mkdirSync, that's what will create me a folder.
+It's a synchronous method.
+Why I am using synchronous?
+Because it's not like
+this script will be run by multiple clients.
+It's going to be just me.
+So it's okay to use synchronous.
+FetchPage, this is a method which I yet to define.
+I don't have it yet.
+So, let's just pretend to have
+mystical magical method fetchPage
+which will give me the data.
+The data would be the content of that URL results.
+And then, I could use writeFileSync to pool that data,
+and I'm using path to create the path to that folder.
+So first of all, I would write the URL
+in the url.xt, and then,
+I will write the content of
+the web page itself into file.html,data.
+Data, that's what my fetchPage method or function,
+if you wish, will give me.
+I get to implement that method.
+Let's output console log.
+Downloading is done.
+And let's output the folder name as well, console.log.
+Putting a comma is just like
+outputting multiple arguments. Download page.
+And I'm invoking my single method.
+The most important method,
+and I'm using (process.argv[2]).
+If you remember process.argv,
+that's a command line argument.
+So actually my script will be smart enough.
+So, it's not going to only download node program,
+it can also download
+other URLs if I provide them in the command line URL.
+Now let's go ahead.
+And now we need to implement this fetch method.
+It's not over yet.
+The download.jsfile it needs more code.
+
+### Video: Node Web Crawler Tutorial part 2
+
+https://youtu.be/cIaV1p_8kQI
+
+>> So, we are continuing with the download.js,
+and now, we are implementing fetchPage.
+It's a function, I'm using
+FAT our functions syntax function,
+which takes two arguments.
+First, would be a URL and the second, is to callback,
+which would take error and the data
+as you can see on line 13.
+So, http.get, we are using our
+good old http.get to make it get request.
+And then I'm creating
+this variable buffer where I will be just concatenating.
+I will be adding up all the chunks which I
+would be getting in
+the response on data in the data event.
+So I'm setting up this event listener response.on data.
+And then in the callback I have
+a chunk argument and then concatenated my buffer.
+Let's not forget response.end which
+will signify the finish of our response.
+This is where we need to call, call back.
+This is very important.
+If we don't call the call back,
+it will just timeout.
+It will never finish.
+So, calling call back with
+no because that's there's no errors.
+If we have an error, we need to call
+call back with an error as the first argument.
+We can do it right here.
+Cancel that error.
+I'm just cancel logging my error,
+but I can also involve the call callback
+with an error in
+case there is no connection or the URL is wrong.
+It's always nice to bubble up
+your error to higher up the chain basically.
+And then the second argument buff,
+that would be the data.
+So, let's save this file and let's
+make sure in package.json I have this module.
+So, I do have this module.
+I did install it before,
+and also in node modules you can also double check.
+I have this module already installed.
+So, when you're building a project from scratch,
+you need to install it with NPM installed your ID.
+And also I always recommend
+create package.json for your project.
+So, now let's go ahead to
+our good old terminal and let's navigate to this folder.
+I'm already there.
+So let's launch the download,
+and you can see it went pretty fast.
+We have this new folder.
+It has a unique name and it's generated by
+our module which allows for the unique IDs.
+So this is where
+the name comes from. The name of the folder.
+And if I run it again,
+I would get the new folder
+with a different name, different unique name.
+And what's inside of the url.text?
+So this is our URL just so we remember it.
+Same data, and file.html has
+all the html that's actually there on the web page.
+So I can just open it in
+my browser and I would see most of it.
+I wouldn't see some of them tss and images which
+are relative by most of the HTML would be there,
+so you can download any website. Let's try.
+Let's give it a try and
+use our- remember that process.orgv.
+So the first element,
+the zero index would be node,
+the second would be one.
+So let me go to download.js.
+So, we are using second.
+So second would be whatever you want to type.
+So let's type azat.co.
+Azat was taking too long.
+Let's try another one.
+reactquickly.co, that went faster and this is our folder,
+we go to url.texting.
+This is a new URL and this
+is an index.html file from reactquickly.co,
+the website for my new book, React quickly.
+It looks real, it looks correct.
+If we scroll all the way down,
+we should see the closing tags.
+So that tells me that the entire HTML was downloaded.
+So that's good. So, we
+implemented in just a few lines under 50 lines.
+We implemented the web scraper and it
+even saves canonical folder names,
+so they are not overwritten.
+Of course you can change them.
+You can change the file name,
+you can change all the information,
+and I am using synchronized methods
+because as I've mentioned it's not a web server.
+So I don't have multiple clients using this tool.
+It's just one person, just me.
+So I don't need it to be concurrent.
+So that's it for this lab. Thank you for watching.
+
+
+
+You can download the solution here:
+
+[download.js](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/2071f4ba21c4322dde1cd9db2dadcf43/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/download.js)
+
+To run it, make a new project with npm init and then move the download.js file into the project folder. Make sure to download all the dependencies with npm install. Then run the project by running 'node download.js'.
+
