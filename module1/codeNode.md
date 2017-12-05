@@ -3535,3 +3535,67 @@ You can download the solution here:
 
 To run it, make a new project with npm init and then move the download.js file into the project folder. Make sure to download all the dependencies with npm install. Then run the project by running 'node download.js'.
 
+---
+
+#### Node Core   Module 1 Assignment Lab CSV to JSON Converter   Module 1 Assignment Lab: CSV to JSON Converter
+
+# Module 1 Assignment Lab: CSV to JSON Converter
+
+The assignment lab for this module is to build a node script to convert CSV files to JSON files. Unlike the tutorial labs, there will be no step by step instructions but all of the information you need to know should be in the modules. Please attempt to solve the assignment lab on your own before viewing the solution.
+
+Assignment Instructions
+
+Imagine you work at a Bitcoin exchange and you have customer information coming from another source: SSN, credit card and their bitcoin numbers. However, the file format is CSV and your exchange can only support JSON. Your task is to write a Node script to convert CSV into JSON.
+
+You can download the customer information CSV file here: Link to download: [customer-data.csv](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/07d100219da1a726dad5eddb090fa215/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/customer-data.csv)
+
+A CSV file is like a table. It has the following structure in which the first line has the field names and the rest of the lines have the data:
+
+id,first_name,last_name,email,gender,ip_address,ssn,credit_card,bitcoin,street_address
+1,Ario,Noteyoung,anoteyoung0@nhs.uk,Male,99.5.160.227,509-86-9654,5602256742685208,179BsXQkUuC6NKYNsQkdmKQKbMBPmJtEHB,0227 Kropf Court
+2,Minni,Endon,mendon1@netvibes.com,Female,213.62.229.103,765-11-9543,67613037902735554,135wbMcR98R6hqqWgEJXHZHcanQKGRPwE1,90 Sutteridge Way
+...
+Your assignment is to write a node script that will convert the customer-data.csv file into a JSON file. The 1st row of the CSV file acts as the keys/properties of the JSON object and the rest of the fields act as values. The JSON file must have an array with 1000 items. Output the JSON file in the same directory and name the file customer-data.json.
+
+Here's an example of the JSON file structure which your Node program will need to produce:
+
+[
+  {
+    "id": "1",
+    "first_name": "Ario",
+    "last_name": "Noteyoung",
+    "email": "anoteyoung0@nhs.uk",
+    "gender": "Male",
+    "ip_address": "99.5.160.227",
+    "ssn": "509-86-9654",
+    "credit_card": "5602256742685208",
+    "bitcoin": "179BsXQkUuC6NKYNsQkdmKQKbMBPmJtEHB",
+    "street_address": "0227 Kropf Court"
+  },
+  {
+    "id": "2",
+    "first_name": "Minni",
+    "last_name": "Endon",
+    "email": "mendon1@netvibes.com",
+    "gender": "Female",
+    "ip_address": "213.62.229.103",
+    "ssn": "765-11-9543",
+    "credit_card": "67613037902735554",
+    "bitcoin": "135wbMcR98R6hqqWgEJXHZHcanQKGRPwE1",
+    "street_address": "90 Sutteridge Way"
+  },
+  ...
+Hint: you can create your own function which maps the CSV fields into a JSON object, or you can leverage any of the npm modules (e.g., [csvtojson](https://npmjs.org/csvtojson)). The choice is up to you. Learning how to find, evaluate, install and use an npm module is a necessary skill in any Node development.
+
+Submission Instructions
+
+To submit the assignment for feedback, put all the program files into GitHub and post a link to your code repository in the Assignment 1 Submissions section of the forums.
+
+In addition to providing the GitHub link, please also answer the following questions about your project:
+
+1. Walk us through the design of your project. Why did you design your project the way you did? What difficulties did you overcome?
+
+2. How did you test your project to verify that it works? 
+
+3. Let us know if anything doesn't work as intended so your reviewer will know ahead of time
+
