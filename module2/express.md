@@ -2,7 +2,59 @@
 
 ### Video: Express Overview
 
-TODO: missing video
+https://youtu.be/FvcsxPUezPc
+
+>> Hello everyone. Welcome to module two.
+In this module, we will cover Express Framework.
+Express for framework is the
+most popular Node.js framework.
+If a Node.js developer
+considers to build a web application,
+most of the times express
+is at least one of the options, of course,
+there are other frameworks,
+but express is definitely one of
+those options for new Node.js projects.
+And a lot of existing web projects is build on
+express because it's been around for a very,
+very long time, especially,
+in Node.js because Node.js
+it's a relatively new technology.
+Express has been for a few years.
+It's been around and it's been used in
+production at many, many large projects.
+So, first of all,
+we will discuss why express.
+I will highlight some of the benefits of
+express and why I think it's
+a great framework to use or at least to consider using.
+After that, we will look at
+the typical structure of your express application.
+We will go item-by-item,
+and we will discuss what are some of
+the components that constitute a proper express app.
+After that, we will discuss some of
+the features that you can use
+to render your response or to send your response back,
+and also, how you can work with your real parameters,
+extract data from a query string,
+and also, how you construct your own middleware.
+In case you're wondering what is the middleware,
+it's a system of plugins for Express framework.
+And we conclude our module with
+a nicely round-up obligation.
+We will build a RESTful API
+which will have a few endpoints,
+which will constitute a CRUD.
+CRUD, it's create, read, update, and delete.
+So, with those four operations,
+you will learn how to do pretty much everything
+you need to do for a certain RESTful API entity.
+This module will give you a good overview of Express,
+as well as some practical skills.
+So, let's jump straight to the lesson, why Express.js.
+
+
 
 ### Express Overview
 
