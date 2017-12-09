@@ -104,3 +104,227 @@ This module will build a solid foundation of Express development by teaching the
 ### Module 2 Assignment Lab: RESTful Blog API
 
 ### Module 2 Assessment
+
+---
+
+#### Express Framework   Why Express and Express Installations   Why Express
+
+# Video: Why Express?
+
+https://youtu.be/GcKRdksk-4s
+
+>> Why Express.js? That's a great question.
+Express.js allows you to do
+certain things basically for free.
+You will get certain features
+because framework will implement those for you.
+Let me give you an example.
+When you're only using Core HTTP module,
+you would need to parse the incoming data yourself,
+so you will get just a string.
+String is useless.
+You need to have a JavaScript object or
+Node.js object which you can work with,
+such as an array or just an object.
+So, Express will do that for
+you by you just applying a simple middleware,
+a simple plugin for Express.
+More on, what about
+certain URLs and certain URL parameters?
+So, typically, we have ID
+of a special entity such as accounts/123.
+So,123 would be an ID of that entity,
+and that information would be in the URL.
+With Express, you get that feature for free.
+So you can extract that ID from the URL automatically,
+and that will be populated in an object,
+just sitting and waiting for you to access it.
+Similarly with a query string data.
+With the Core GDP,
+you would have to do that parsing yourself with Express,
+Express will do that for you.
+That's not all. With Express,you can organize your code,
+organize your routes, your business logic in a nicer,
+in a better manner.
+It's very easy to create a module and then,
+import that module and plug it in your Express app.
+And that module would have
+certain routes such as routes for /accounts.
+Another file might have routes for /transactions,
+yet another file might
+have routes for /users. So you can see.
+Express will allow you to modularize your application,
+which will make it easier to maintain and
+to basically look and read your code and
+understand what is happening because
+your code will be nicely organized in multiple files.
+Those are not all of the benefits.
+There are more benefits, but those are
+the main benefits of Express.
+And as the last note,
+because Express is so popular,
+I would like to highlight that Express has
+a vast ecosystem of plugins which are called middleware.
+And the way they work,
+you would import that middleware.
+It's an npm. It's an npm package.
+You would install it and import it and
+then you would apply it to your server.
+This way, Express serves as
+a foundational layer for your own framework.
+So you can start very,
+very small, very minimal.
+You can use only the features that you need.
+And then, as your application progresses,
+as your application becomes more and more advanced,
+and you need more and more complex features,
+you can just pick and choose whatever middleware,
+whatever plugins you need
+and install them, configure them,
+apply them very easily with just a couple lines of code,
+and you will end up with your own framework,
+which is based on the Express,
+by customizing that middleware.
+Contrast that with some of
+the other frameworks which
+offer you the complete solution.
+Oftentimes, I end up fighting with
+those opinionated complex frameworks
+because I need a much simpler solution.
+So, I end up extracting a lot of
+functionality from
+those big opinionated advanced framework.
+Express takes an opposite approach.
+With Express, you start small,
+you start minimal and then,
+you grow as you need only if you need.
+That's my favorite approach,
+but also as the numbers on GitHub shows,
+a numbers of downloads on npm shows.
+It's one of the most popular framework in Node.js.
+So, definitely, other developers
+consider this approach beneficial.
+So those are the main reasons why you should use Node.js.
+So let's get down to actually using Express,
+and let's build our first "Hello
+World" server in the next video.
+
+
+### Why Express?
+
+Node.js is a relatively young platform when it comes to frameworks (unlike Ruby or Java), but
+ there's already a leader that has already become a de facto standard used in the majority of
+ Node.js projects: Express.js.
+
+Express is the most popular web application framework for Node. It is easy to work with since 
+it ties into Node's functional paradigm. Some of the benefits of Express (for more features, 
+see Express vs. http) include:
+
+* Deliver static content
+* Modularize business logic
+* Construct an API
+* Connect to various data sources (with additional plugins)
+* Write less code (see Express vs. http)
+* Validate data (with additional plugins)
+
+### Core http Module Server Example
+
+Here's an example from my book Full Stack JavaScript (Apress, 2015) of a small RESTful API built with the core http module. This server has only two endpoints: POST /messages and GET /messages. The server connects to MongoDB. Just glance over the file:
+
+```node
+var http = require('http')
+var util = require('util')
+var querystring = require('querystring')
+var client = require('mongodb').MongoClient
+
+var uri = process.env.MONGOLAB_URI || 'mongodb://@127.0.0.1:27017/messages'
+//MONGOLAB_URI=mongodb://user:pass@server.mongohq.com:port/db_name
+
+client.connect(uri, function(error, db) {
+  if (error) return console.error(error)
+  var collection = db.collection('messages')
+  var app = http.createServer(function (request, response) {
+    var origin = (request.headers.origin || '*')
+    if (request.method == 'OPTIONS') {
+      response.writeHead('204', 'No Content', {
+        'Access-Control-Allow-Origin': origin,
+        'Access-Control-Allow-Methods':
+          'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'content-type, accept',
+        'Access-Control-Max-Age': 10, // In seconds
+        'Content-Length': 0
+      })
+      response.end()
+    } else if (request.method === 'GET' && request.url === '/messages') {
+      collection.find().toArray(function(error,results) {
+        if (error) return console.error(error)
+        var body = JSON.stringify(results)
+        response.writeHead(200,{
+          'Access-Control-Allow-Origin': origin,
+          'Content-Type':'text/plain',
+          'Content-Length':body.length
+        })
+        console.log('LIST OF OBJECTS: ')
+        console.dir(results)
+        response.end(body)
+      })
+    } else if (request.method === 'POST' && request.url === '/messages') {
+      request.on('data', function(data) {
+        console.log('RECEIVED DATA:')
+        console.log(data.toString('utf-8'))
+        collection.insert(JSON.parse(data.toString('utf-8')),
+        {safe:true}, function(error, obj) {
+          if (error) return console.error(error)
+          console.log('OBJECT IS SAVED: ')
+          console.log(JSON.stringify(obj))
+          var body = JSON.stringify(obj)
+          response.writeHead(200,{
+            'Access-Control-Allow-Origin': origin,
+            'Content-Type':'text/plain',
+            'Content-Length':body.length
+          })
+          response.end(body)
+        })
+      })
+    } else {
+    	response.end('Supported endpoints: \n/messages\n/messages')
+    }
+  })
+  var port = process.env.PORT || 1337
+  app.listen(port)
+})
+```
+
+Can you see some problems with the code? There is a lot of extra work such as JSON.parse() and
+ Content-Type/Content-Length headers. The code organization is not elegant due to the if/else
+ conditions. The modularization of different routes is hard.
+
+The bottom line is that http has all the functionality to build HTTP servers, but it's a very
+ low-level implementation which will require you to code a lot of additional things. That's 
+ where Express comes to the rescue!
+
+### Express vs. http
+
+If you write serious apps using only core Node.js modules (refer to the previous snippet for 
+an example), you most likely find yourself reinventing the wheel by writing the same code
+ continually for similar tasks, such as the following:
+
+* Parsing of HTTP request bodies
+* Parsing of cookies
+* Managing sessions
+* Organizing routes with a chain of if conditions based on URL paths and HTTP methods of the requests
+* Determining proper response headers based on data types
+* URL params and query strings parsing
+* Automatic response headers
+* Routes and better code organization
+* Myriads of plugins (called middleware)
+* Request body parsing (with a module)
+* Authentication, validation, session and more! (with modules)
+
+With Express you can develop APIs much faster!
+
+Express.js is an amazing framework for Node.js projects, and it's used in the majority of web
+ apps, which is why this second chapter is dedicated to getting started with this framework.
+
+
+---
