@@ -328,3 +328,68 @@ Express.js is an amazing framework for Node.js projects, and it's used in the ma
 
 
 ---
+
+#### Express Framework   Why Express and Express Installations   Installing Express as a local dependency
+
+# Installing Express as a local dependency
+
+The general rule of Node is that if you plan to use an npm module with `require()`, then you need to install 
+it locally (i.e., in node_modules). Thus, for a new project, create a folder and a `package.json` file:
+
+```
+mkdir express-hello-world
+cd express-hello-world
+npm init -y
+```
+
+Then, you can install express as a dependency locally:
+
+```
+npm install express
+```
+
+Or with an exact version:
+
+```
+npm install express@4.13.3
+```
+
+### Installing Scaffolding
+
+There's another module called Express Generator which is a scaffolding. Developers use the generator to jump 
+start their Express development because the generator will create files and folders for different template 
+engines and CSS libraries
+
+**Install Express.js command-line generator:**
+
+```
+npm install -g express-generator
+```
+
+Using the Generator
+
+Now we can use the CLI to spawn new Express.js apps.
+
+```
+express todo-list-app
+cd todo-list-app
+npm install
+npm start
+```
+
+The Express.js Generator Command-Line Interface offers support for CSS libraries and template engines. For example, to create an app with Stylus support, type the following:
+
+```
+express -c styl express-styl
+```
+
+Then, as the instructions in the terminal tells us (Figure 2-5), type:
+
+```
+cd express-styl && npm install
+DEBUG=my-application ./bin/www
+```
+
+Open the browser of your choice at http://localhost:3000 to view the result.
+
+---
