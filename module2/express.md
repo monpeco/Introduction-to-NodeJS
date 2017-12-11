@@ -463,3 +463,51 @@ a data only server (rendering happens and UI is hosted on the clients)
 ---
 
 #### Express Framework   Hello World with Express   Typical Express App Structure
+
+# Typical Express App Structure
+
+The main Express app (server) file is typically named app.js, server.js or index.js. It has the following sections in 
+the order from top of the file to the bottom of the file:
+
+1. Imports
+2. Instantiations
+3. Configurations
+4. Middleware
+5. Routes
+6. Error handlers
+7. Server bootup or server export
+
+If we go back to our hello world example, we can see some of the sections but not all of them:
+
+```node
+// Imports
+const express = require('express') 
+// Instantiations
+const app = express() 
+// Routes
+app.get('/', (req, res)=>{
+  res.send('hello world')
+})
+// Bootup
+app.listen(3000)
+```
+
+### Configuring Express
+
+The Express server could be configured before it starts (none of the configurations are mandatory). Developers define 
+(set) configuration via the `set` method where the first argument is the name and the second is the value:
+
+```node
+const express = require('express')
+const app = express()
+app.set('port', process.env.PORT || 3000)
+app.set('views', 'templates') // The directory the templates are stored in
+app.set('view engine', 'jade')
+```
+
+In the code above, views sets the template directory (folder with server-side templates) to `templates` instead of the 
+default value of views. The line after that with `view engine`, sets the template engine to jade.
+
+---
+
+#### Express Framework   Creating and Using Middleware   Middleware
