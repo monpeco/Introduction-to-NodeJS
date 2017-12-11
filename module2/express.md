@@ -393,3 +393,48 @@ DEBUG=my-application ./bin/www
 Open the browser of your choice at http://localhost:3000 to view the result.
 
 ---
+
+#### Express Framework   Hello World with Express   Hello World with Express
+
+# Video: Hello World with Express
+
+TODO: missing video
+
+### Hello World with Express
+
+Create a new folder and create a package.json in it:
+
+```
+mkdir express-hello-wolrd
+cd express-hello-world
+npm init -y
+```
+
+Then create a new file named app.js using your favorite editor (mine is VS Code!). Next, type the following 
+code to create an Express app and define a single route (endpoint):
+
+```node
+const express = require('express') 
+const app = express() 
+
+app.get('/', (req, res) => {
+  res.send('hello world')
+})
+
+app.listen(3000)
+```
+
+Save the file and navigate to your newly created folder using the terminal. Launch the node script with:
+
+```
+node app.js
+```
+
+Once the application is launched, leave the terminal window open and open your favorite browser at localhost:3000. 
+You should see hello world.
+
+Congratulations. Your first Express server is working.
+
+---
+
+#### Express Framework   Hello World with Express   Express Project Structure
