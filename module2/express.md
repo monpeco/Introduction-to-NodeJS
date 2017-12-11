@@ -438,3 +438,28 @@ Congratulations. Your first Express server is working.
 ---
 
 #### Express Framework   Hello World with Express   Express Project Structure
+
+# Express Project Structure
+
+One of the good things about Express is that it is a very configurable framework. It won't enforce a certain way to do 
+things. This is useful because it allows you to customize almost anything.
+
+However, this ability to configure and customize might be daunting to first-timers because they don't know what is the 
+best practice. Let me show you the best practice for organizing the files, i.e., the recommended Express project structure.
+
+**Structure**
+
+* app.js: main file, houses the embedded server and application logic
+* /public: contains static files to be served by the embedded server
+* /routes: houses custom routing for the REST API servers (not needed for a web app)
+* /routes/users.js: endpoint/routes for resources such as users
+* /views: contains templates that can be processed by a template engine (not needed for REST APIs)
+* /package.json: project manifest
+* /www: boot up script folder
+
+**Note**: a web app is a traditional web application (thick server) with 100% server-side rendering while a REST API is 
+a data only server (rendering happens and UI is hosted on the clients)
+
+---
+
+#### Express Framework   Hello World with Express   Typical Express App Structure
