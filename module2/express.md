@@ -511,3 +511,63 @@ default value of views. The line after that with `view engine`, sets the templat
 ---
 
 #### Express Framework   Creating and Using Middleware   Middleware
+
+# Video: What is Middleware
+
+TODO: missing video
+
+### What is Middleware
+
+The Middleware pattern is a series of processing units connected together, where the output of one unit is the input 
+for the next one. In Node.js, this often means a series of functions in the form:
+
+```node
+function(args, next) {
+  // ... Run some code
+  next(output) // Error or real output
+}
+```
+
+The middleware pattern implements continuity. The request is coming from a client and a response is sent back to the client.
+
+> request->middleware1->middleware2->...middlewareN->route->response
+
+Express has a middleware manager so developers only need to apply the middleware with `app.use()`. Take a look at this example:
+
+```node
+var express = require('express')
+var app = express()
+//... Define middleware1-N
+app.use(middleware1)
+app.use(middleware2)
+...
+app.use(middlewareN)
+...
+```
+
+### Middleware Order
+
+Middleware are executed in the order specified. In the following example, the `logger('dev')` middleware causes requests to be 
+logged before the `bodyParser.json()` middleware causes payloads of requests to be parsed into `request.body`.
+
+```node
+var logger = require('morgan')
+var bodyParser = require('body-parser')
+...
+app.use(logger('dev'))
+app.use(bodyParser.json())
+```
+
+**Two Types of Express Middleware**
+
+There are two types of Express middleware:
+
+* npm modules, e.g., body-parser from npm used with app.use(bodyParser.json())
+* Custom middleware, e.g., app.use((req, res, next)=>{next()})
+
+Developers can mix them. By utilizing middleware, developers can modularize their applications and reuse code.
+
+---
+
+#### Express Framework   Creating and Using Middleware   Creating middleware
+#### 
