@@ -19,7 +19,17 @@ app.use((request, response, next)=>{
 app.get('/', (req, res) => {
   console.log('Root in Express!!');
   console.log("(In the request handler) req.pm: " + req.pm);
-  res.send('Hello world from Express!! (with middleware)');
+  res.send('{msg: raw_data}');
 })
 
-app.listen(process.env.PORT);
+app.get('/accounts', (req, res) => {
+  console.log('accounts');
+  res.send('accounts');
+})
+
+app.get('/transactions', (req, res) => {
+  console.log('transactions');
+  res.send('transactions');
+})
+
+app.listen(3000);
