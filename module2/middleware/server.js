@@ -31,7 +31,10 @@ app.get('/', (req, res) => {
   res.send('{msg: raw_data}');
 })
 
-app.get('/accounts', (req, res) => {
+app.get('/accounts', (req, res, next) => {
+  console.log('inline middleware accounts');
+  next();
+},(req, res) => {
   console.log('accounts');
   res.send('accounts');
 })
