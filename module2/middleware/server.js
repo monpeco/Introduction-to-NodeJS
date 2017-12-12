@@ -3,6 +3,7 @@ const app = express()
 
 const middleware = (request, response, next) => {
   request.pm = 'This is a parameter passing';
+  console.log(`Method: [${request.method}], Url: [${request.url}]`);
   console.log('Middleware!!');
   next()
 }
