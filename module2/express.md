@@ -1153,3 +1153,47 @@ URL-encoded.
 ---
 
 #### Express Framework   Creating and Using Middleware   Useful Middleware From npm
+
+# Useful Middleware From npm
+
+There are a lot of middleware modules to use. Every one of them is installed with the npm command using the module's npm name:
+
+    npm install <package_name> --exact
+
+Here's the most popular and useful Express middleware which you'll probably end up using in almost every project 
+(listed the npm names):
+
+body-parser request payload
+compression gzip
+connect-timeout set request timeout
+cookie-parser Cookies
+cookie-session Session via Cookies store
+csurf CSRF
+errorhandler error handler
+express-session session via in-memory or other store
+method-override HTTP method override
+morgan server logs
+response-time
+serve-favicon favicon
+serve-index
+serve-static static content
+vhost: virtual host
+cookies and keygrip: analogous to cookieParser
+raw-body: raw request body
+connect-multiparty, connect-busboy: file upload
+qs: analogous to query
+st, connect-static analogous to staticCache
+express-validator: validation
+less: LESS CSS
+passport: authentication library
+helmet: security headers
+connect-cors: CORS
+connect-redis
+
+Express is a minimalistic framework. By using only the middleware you need for a particular project, you end up with a custom 
+framework which is not bulky and doesn't have anything extra which your project doesn't need or use. The vast number of 
+open-source middleware modules allows you to pick and choose and then modify the behavior of your application thanks to 
+the flexible and configurable design of Express.
+
+Feel free to print this list of commonly used Express middleware or download cheatsheet from GitHub.
+
