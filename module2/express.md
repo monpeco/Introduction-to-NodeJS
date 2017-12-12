@@ -1163,32 +1163,32 @@ There are a lot of middleware modules to use. Every one of them is installed wit
 Here's the most popular and useful Express middleware which you'll probably end up using in almost every project 
 (listed the npm names):
 
-body-parser request payload
-compression gzip
-connect-timeout set request timeout
-cookie-parser Cookies
-cookie-session Session via Cookies store
-csurf CSRF
-errorhandler error handler
-express-session session via in-memory or other store
-method-override HTTP method override
-morgan server logs
-response-time
-serve-favicon favicon
-serve-index
-serve-static static content
-vhost: virtual host
-cookies and keygrip: analogous to cookieParser
-raw-body: raw request body
-connect-multiparty, connect-busboy: file upload
-qs: analogous to query
-st, connect-static analogous to staticCache
-express-validator: validation
-less: LESS CSS
-passport: authentication library
-helmet: security headers
-connect-cors: CORS
-connect-redis
+* [body-parser](https://github.com/expressjs/body-parser) request payload
+* [compression](https://github.com/expressjs/compression) gzip
+* [connect-timeout](https://github.com/expressjs/timeout) set request timeout
+* [cookie-parser](https://github.com/expressjs/cookie-parser) Cookies
+* [cookie-session](https://github.com/expressjs/cookie-session) Session via Cookies store
+* [csurf](https://github.com/expressjs/csurf) CSRF
+* [errorhandler](https://github.com/expressjs/errorhandler) error handler
+* [express-session](https://github.com/expressjs/session) session via in-memory or other store
+* [method-override](https://github.com/expressjs/method-override) HTTP method override
+* [morgan](https://github.com/expressjs/morgan) server logs
+* [response-time](https://github.com/expressjs/response-time)
+* [serve-favicon](https://github.com/expressjs/serve-favicon) favicon
+* [serve-index](https://github.com/expressjs/serve-index)
+* [serve-static](https://github.com/expressjs/serve-static) static content
+* [vhost](https://github.com/expressjs/vhost) virtual host
+* [cookies and keygrip](https://github.com/pillarjs/cookies) analogous to cookieParser
+* [raw-body](https://github.com/stream-utils/raw-body) raw request body
+* [connect-multiparty](https://github.com/expressjs/connect-multiparty), [connect-busboy](https://github.com/mscdex/connect-busboy) file upload
+* [qs](https://github.com/tj/node-querystring) analogous to query
+* [st](https://github.com/isaacs/st), [connect-static](https://github.com/andrewrk/connect-static)  analogous to staticCache
+* [express-validator](https://github.com/ctavan/express-validator) validation
+* [less](https://github.com/emberfeather/less.js-middleware) LESS CSS
+* [passport](https://github.com/jaredhanson/passport) authentication library
+* [helmet](https://github.com/helmetjs/helmet) security headers
+* [connect-cors](https://github.com/antono/connect-cors) CORS
+* [connect-redis](https://github.com/tj/connect-redis)
 
 Express is a minimalistic framework. By using only the middleware you need for a particular project, you end up with a custom 
 framework which is not bulky and doesn't have anything extra which your project doesn't need or use. The vast number of 
