@@ -16,6 +16,15 @@ app.use((request, response, next)=>{
   next();
 });
 
+app.use((request, response, next)=>{
+  if(request.query.key_api){
+    console.log("Key defined");
+    next();
+  }else{
+    response.status(401).send({msg: 'Not authorized'});
+  }
+});
+
 app.get('/', (req, res) => {
   console.log('Root in Express!!');
   console.log("(In the request handler) req.pm: " + req.pm);
