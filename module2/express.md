@@ -398,7 +398,124 @@ Open the browser of your choice at http://localhost:3000 to view the result.
 
 # Video: Hello World with Express
 
-TODO: missing video
+https://youtu.be/axwRF-yHHR8
+
+>> Building a server with Express.js is very, very easy.
+All you really have to do is, of course,
+you need to install Express so,
+you install it with NPM and then you
+import it using require method.
+You save it in a variable called Express,
+so later you can instantiate Express app,
+typically, we use the app variable and then,
+you can define your routes.
+So first of all, let's define
+the home route which is just a slash.
+It's also called a route, route.
+As the second argument,
+you would see the request handler,
+res.send instead of end,
+we can use send which is a little bit more
+advanced than just sending a plain text.
+It will also add the headers,
+and then app.listen, that's what will boot up the server.
+Okay. So, when you're just starting this project,
+Express application, you need to install Express.
+All right. How do you do that?
+NPM init, that's the very first thing
+that I would do in every new project.
+And then, npm i express,
+space, dash E. Why E?
+That's for exact version.
+I'm using NPM version five,
+so I don't need to add S which is for safe dependency.
+And now, in my package.json,
+I have the exact version of Express.
+So that's pretty much it.
+Let me go and save this file server.js,
+and now I can use node-dev.
+If you haven't installed node-dev,
+you can install it with
+either globally or locally as well.
+Node-dev, save it, and even
+better would be to add D
+which stands for Development dependency.
+Development dependency meaning,
+when we push it to production,
+we don't need it, we can just keep
+it by adding dash dash production flag.
+So, the devDependencies is node-dev
+and I can also add it here,
+node-dev server.js, so this would be my command.
+But, on most computers,
+people don't have this folder
+configured node_modules/bin.
+So let me add it just to make sure
+all my coworkers and people who pulls this project,
+the student's etcetera, etcetera,
+they can also launch this node-dev, okay?
+So just making it more robust.
+NPM start, this is how we'll
+launch this script, NPM start.
+It's just an alias for this long command,
+node-dev server.js, and you can
+see this at the command, node-dev server.js.
+Okay, so that should be running.
+Let me open a new terminal and go ahead,
+and curl to that.
+Okay. So, it says cannot get to transactions.
+So you can see that Express is very picky.
+It would not allow me to specify any path,
+cURL HTTP would do that but with Express,
+you need to be very careful what path are you using.
+Trailing slashes are okay,
+but anything except the trailing slash would cause,
+cannot get, and then the name of that path,
+the name of that URL.
+And this is my output on the server.
+It's nothing because I don't have any console logs,
+I don't have any log in here.
+So that's what probably would be the next step,
+and we can also add -i to get more information.
+So we see ETag.
+What is ETag?
+ETag, that's a special caching mechanism
+that express automatically adds.
+The browsers use it to determine whether
+it's the same response
+or it's a new, it has been changed.
+Then we see Content-Type, Content-Length, etcetera.
+What is different between send and end?
+So, we can also use a different method,
+and because I'm using node-dev,
+the server has been automatically restarted.
+So you can see now the headers are gone,
+some of them are gone,
+so Content-Type is gone.
+So that's what send is doing.
+It's adding extra headers and it's also adding that ETag.
+You can still see X-Powered-By: Express,
+you can modify it for security.
+You can say, PHP to confuse attackers.
+Okay. So send, send will make sure that the type is good,
+the type is correct.
+So for example, if it's json,
+it will also use the proper time.
+So let's change it to Json now.
+And now you can see that, it's application json.
+So you can see Express's doing a lot
+of things automatically for
+you and it is just a nicer way to organize your routes.
+You don't need to have a lot of if else conditions.
+It's also very easy to pull this function into
+a module especially when
+you use this function many, many times.
+It's better to modularize it
+and then just use it by the name.
+So that's it for the video.
+In the next videos, we will see at
+more complex Express examples.
+
 
 ### Hello World with Express
 
@@ -514,7 +631,225 @@ default value of views. The line after that with `view engine`, sets the templat
 
 # Video: What is Middleware
 
-TODO: missing video
+https://youtu.be/-VyScDskIUg
+
+>> Welcome to module two, lesson number four.
+This would be a little bit more complex scenario of
+the express application which uses server.js.
+Also, we will be using
+middleware and we will be using two types of middleware.
+One is just a middleware created by us and
+another type of middleware would
+be middleware from an npm module.
+So, you just saw me, I created server.js.
+And I've just copy-pasted
+the 'hello world' server because
+we're going to start with this endpoint,
+with this route 'get'.
+Okay? Let's save it.
+And then also we would need to create
+package.json NPM init -y.
+What is cool about this is automatically adds
+the proper file name, server.js.
+But let's add our node-def package
+and let's also install it.
+Node-dev DE.
+So, it's going to be
+dev dependency and it's going to be exact version.
+So DE, capital DE.
+While it's installing, we can go ahead and start
+implementing some of our middleware to app.use.
+That's what you would typically apply a middleware.
+And what is a middleware? It's just a function.
+A function which has three arguments,
+request, response, and next.
+Why it has that? Because it's in the middle.
+The route function doesn't
+have next because it's at the end.
+But the middleware needs to have next.
+Okay. So, don't forget to call it.
+So, we're calling next.
+So, this is good enough
+but this middleware would not do anything.
+So, let's implement logging, console.log(req.url ).
+So, this way we would know what URL is coming.
+Also let's output req.method so we would output a method.
+And let's use the ES6 syntax
+which is called string literal.
+So, we would put a method
+and we would put semi column and then the URL.
+Okay. So, let's save it and
+right now we have just one endpoint.
+So, let's add more endpoints so we can
+actually have responses for different accounts,
+for different entities, for different resources, such as,
+accounts and then maybe run transactions.
+Transactions.
+Transactions. And here we would change it to accounts.
+Okay.
+So, far so good.
+Let's make sure the server is running.
+So, we need to go into the lesson four folder.
+And now we would say NPM start.
+Why? Because I change it to the node-def.
+And if you see a error like this,
+it's actually good that we have this error,
+'cannot find module Express'.
+That's because I actually didn't install Express.
+So let's go ahead and fix it.
+NPM install Express.
+And I want the exact version.
+I do not want it to be a definite boundaries,
+so that's why there is no
+D. Must be a production dependency.
+Okay. So, let's restart
+our node-def with NPM script, NPM start.
+Okay. So, it's running.
+So, now we're going to make a curled request.
+Okay. So, 'hello world'.
+So, now we would go to accounts.
+Okay. So it's accounts.
+And now we would go to transactions.
+Okay. So, the responses are correct.
+And on the server,
+we see our logs.
+So, what did happen?
+Every single request went
+through this piece of code through this function.
+That function was triggered.
+And what you want to do here it's totally up to you.
+You have a lot of flexibility to configure this behavior.
+So middleware, it's all about organizing the code.
+For example, if I didn't have this middleware,
+I would have to put this console log.
+I had to basically copy paste it everywhere.
+Right? Which is bad bad bad.
+We don't want to repeat ourselves.
+With this simple app.use, pattern,
+this method and this pattern,
+middleware pattern, you can reuse a lot of code.
+So the idea, every request
+irrespective of the HTTP method,
+irrespective of the URL would go through the middleware.
+Okay? And then we can call next when it's over.
+We can have multiple middleware, not just one.
+So, let's say this middleware checks
+for the API key and the way
+you can do it if (req.query.api_key).
+So, if it's defined,
+then you can go and proceed.
+Can proceed to the next route.
+Else. Now you can say response status for (401).
+No, it's not found.
+It's found but it's not authorized.
+(Msg: 'Not authorized').
+Okay. So, of course you would have
+to make a database call and
+actually check for that value.
+Right? But for now let's keep it simple.
+Let's just make sure it's present in the URL.
+So, we are going back and as you can see that
+my server has been restarted.
+So, I have the fresh code.
+So, let's submit transactions and this should return 401.
+So, you can see unauthorized 401.
+That's because of this middleware.
+So, it's a second middleware.
+And if I go to the server side logs,
+I still see 'get transactions'.
+So, what happened?
+The code went here,
+then the next was called.
+Then it went to the next middleware and that
+next middleware stopped everything
+because I already finished the response.
+So, you can't complete the response, finish it,
+write to it and finish it with
+send-json or end only once.
+Once you do it, that's it.
+It's not going to continue.
+It will only continue to call next without any argument.
+Okay? So, now let's fix this call by
+adding API key and 1, 2, 3, 4, 5, 6.
+That's a great API key.
+So, now I'm seeing status 200.
+So, what actually happened?
+It went to the first middleware,
+then it went to the second middleware and this was true.
+This was the truth value because it was defined.
+Though the 'next' was called and then it
+went and tried to match the URL based
+on this pattern which is the regular expression for
+all intents and purposes and then it ended up here.
+Okay? You don't have to define middleware separately.
+So, if your middleware applies to
+all routes and all URL patterns,
+then you would use app.use.
+If it only applies to a specific route,
+let's say only this route needs it,
+you can just define it here, req, res, next.
+Again, three arguments.
+And you can define it using
+anonymous function definition for our definition.
+Or you can create a named function
+and of course don't forget to call 'next'.
+Console.log('accounts').
+Let's call it inline middleware.
+Inline because it's in line of the get method.
+So, let's go ahead and try it.
+So, I need to leave my API key,
+otherwise we would never go there.
+Accounts.
+And now if you go back,
+I would expect to see accounts inline middleware.
+But if I remove my key, my API key,
+my authentication or authorization will fail.
+Okay? So, I never see accounts inline middleware.
+So, this is actually from the previous request.
+The second request just never goes there.
+Okay? So, order matters.
+When you work with middleware,
+the order of the middleware matters a lot.
+It goes from top to bottom and
+Express implements the middleware manager.
+All you have to do is just provide
+the middleware functions themselves.
+So, as you can see, the middleware function is
+very similar to the request,
+handler to the request, handler itself,
+except that it has one extra argument 'next'.
+Now, if you call this argument with an error object
+such as (new error ('oopps)),
+this will basically shortcut everything.
+It will skip. It would not go to the next,
+either middleware or request handler.
+It will go to something called error handler.
+App.use. And the way you define error handling,
+you would specify, not two, not three,
+but four arguments; error,
+request, response and next.
+And now let's output status.
+Let's pretend it's our fault the server crashed and now
+we would output the error itself.
+Okay? So, what is happening when we get two accounts?
+Imagine there was a problem.
+So, we called the n-error.
+We called next with an error.
+So, we're going to
+repeat the request but we need an API key.
+Otherwise it would not lead us to go inside of that code.
+So, you can see 500 internal server error.
+So, that's because we never went to the line 25.
+We just jump straight to the line 32.
+And if you go back here,
+you can also see that,
+well, we didn't have any console logs.
+But if you had a console log here,
+you would see that as well.
+Okay. So, that's how you work with middleware,
+how you create your own custom middleware,
+request handlers as well as error handlers.
+
 
 ### What is Middleware
 
@@ -638,7 +973,139 @@ This makes moving routes and middleware to other files (modularization) straight
 
 ### Video: Using bodyParser middleware
 
-TODO: missing video
+https://youtu.be/ysWT2S7haVU
+
+>> Now, let's go ahead and use
+a middleware which is not ours,
+is defined by another module such as bodyParser,
+very convenient module,
+so we would say require('body-parser'),
+that's the npm name,
+and for the Javascript for
+the variable name we would use the camel case bodyParser.
+And then, we would say app.use(bodyParser.json())
+and that's it.
+We have the parsing on the payload,
+incoming payload and we will get
+the object, rest done body.
+So, for example, let's go
+into transactions and console.log(req.body).
+So, those would be our response,
+before we can actually start using it.
+We absolutely necessarily need to install the Parser.
+Let's also install the exact version.
+It's going to be a regular dependence,
+it's not a devDependency.
+So, that looked good.
+Let's double check our server app.
+It has restarted.
+So now, we need to curl two transactions,
+and we also need to send some data. So, let's do that.
+So, let's make it key colon,
+let's. Make it json.
+So, the problem is that, we cannot POST.
+We can only do the GET.
+We don't have a POST, so it's very easy to change.
+Let's change this route to the POST,
+just for the sake of the exercise.
+Now we send the data.
+So, that went fine.
+We have two hundred and on
+the server we have empty object.
+Okay. So, why is that?
+Probably didn't like our data.
+So, let's try to modify it a little bit.
+I would try to use all double quotes,
+because I know JSON needs double quotes everywhere.
+But that still didn't help us.
+So, what we actually need to do,
+we need to also specify the header,
+application/json, that will tell Express that,
+and Express middleware the body parts are
+that it's actually JSON payload which is coming,
+because it could be URL uncoded,
+it could be a form data,
+could be many other formats.
+So, let's provide this header.
+This is how you do it.
+Capital H 'Content-Type: applications/json' it's
+an http request header,
+and you can see this is the output,
+output from the server.
+So, we have a normal Node.js or Javascript object.
+Instead of having a string,
+we don't use json.pars,
+we don't do anything,
+it's just magically in there
+based on the proper content type.
+So, that's how you can use an external middleware.
+Body parts are also has URL encoded
+middleware and there are many, many other middleware.
+For example, for authentication, for validation,
+for assertions, express provides a lot of middleware.
+Typically you would install them,
+either put the version in
+package.json Or in use and install,
+then in your server file,
+you would import it using require,
+and then you would apply it.
+And that's most of it.
+Some of the middleware will
+require you to configure it as well.
+Others, such as body-parts.json,
+doesn't require you to configure.
+So, let's do one more,
+let's do the logger instead of
+our logging we would be
+using a module, it's called morgan.
+And again I'm using E for the installation.
+Now, I will just copy this line
+and change bodyParser to morgan.
+And here I would say morgan,
+hold up the line as well,
+then I would say, (morgan('dev')).
+Why dev? Morgan accepts different formats, So,
+dev would be a very small footprint,
+very small footprint for the logging.
+Let's double check that our server restarted.
+It's not looking good,
+says moran not defined because I made a typo.
+I need morgan, I need put a g there.
+Okay, so now it's working and
+I can submit another column.
+Now, you can see this logging is much better than ours.
+It has the status,
+it has also the timing,
+nine milliseconds, pretty good timing.
+So, this is what's morgan gives you.
+You can change the setting.
+There is a few predefined formats for production,
+you have more information for development,
+you have less information,
+or you can create your own format,
+format for the server side locks.
+So, morgan bodyParser and probably our handler.
+Those are some middleware
+which you probably couldn't use in all of your projects,
+and I've shown you the steps so your npm install it,
+import it, and then apply it.
+Three steps, three easy steps.
+So, that's it for the middleware,
+you can create your own,
+you can use middleware from an npm package.
+Just remember the order matters.
+That's why we put bodyParser in the beginning,
+and we put the logs in the beginning, and then,
+you do your application custom,
+your custom middleware later,
+you can abstract it into a file.
+Abstraction is just a fancy word for cutting and pasting.
+So, you can put it in a file and create a name.
+For example, auth or loggin something like that, right?
+Doesn't have to be all in one file.
+Use module.export and use require.
+So, that's it for this video. Thank you for watching.
+
 
 ### Request Body
 
