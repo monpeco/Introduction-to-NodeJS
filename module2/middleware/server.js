@@ -33,6 +33,10 @@ app.get('/', (req, res) => {
 
 app.get('/accounts', (req, res, next) => {
   console.log('inline middleware accounts');
+  if(req.query.key_api != 123456){
+    console.log('In accounts is not optional key_api');
+    next(new Error('In accounts is not optional key_api'));
+  }
   next();
 },(req, res) => {
   console.log('accounts');
@@ -42,6 +46,12 @@ app.get('/accounts', (req, res, next) => {
 app.get('/transactions', (req, res) => {
   console.log('transactions');
   res.send('transactions');
+})
+
+//Error handling
+app.use((error, req, res, next) => {
+  console.log(`error: [${error}]`);
+  res.status(500).send(`{Success: false, ${error}}`);
 })
 
 app.listen(3000);
