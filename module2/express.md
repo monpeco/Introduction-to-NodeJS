@@ -1195,5 +1195,9 @@ framework which is not bulky and doesn't have anything extra which your project 
 open-source middleware modules allows you to pick and choose and then modify the behavior of your application thanks to 
 the flexible and configurable design of Express.
 
-Feel free to print this list of commonly used Express middleware or download cheatsheet from GitHub.
+Feel free to print this list of commonly used Express middleware or download [cheatsheet from GitHub](https://github.com/azat-co/cheatsheets/tree/master/express4).
 
+
+---
+
+#### Express Framework   Implementing REST API Routing   Implement REST API routing
