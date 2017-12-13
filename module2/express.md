@@ -1201,3 +1201,138 @@ Feel free to print this list of commonly used Express middleware or download [ch
 ---
 
 #### Express Framework   Implementing REST API Routing   Implement REST API routing
+
+### https://youtu.be/Sn9_9YHHrYg
+
+>> Let's take a look at another example.
+In this example, we'll be learning
+how to use different routes,
+how to specify different routes.
+So app.get, that's what you
+already know from the Hello World,
+and then of course app.post.
+So we are using post methods for
+typically to create a new resource,
+to create a new entity.
+In this case, I'm not using a database,
+is just object profile.
+And I'm also using body parser to get the Json data.
+So req.body, that is the new value for the profile.
+And then for update,
+we typically use put.
+Put is according to the standard,
+it's a complete replacement.
+We are merging the fields,
+we are partially replacing app.put,
+that's for complete replacement,
+but most of the APIs use it for partial replacement.
+So we're merging the fields using the object.assign.
+And then there is sendStatus method,
+which will send the status and finish all the response,
+so we don't need to actually
+turn the body of the response,
+and for the delete there's app.delete.
+So as you can see,
+the methods they're just moving
+the hdp names only with the lowercase.
+So let's go ahead and run
+this example to see if it's working or not.
+In the package.json, I'm using node-dev,
+and then you can see I have body parser
+and express as dependencies.
+So I npm start.
+I also have this batch script with a bunch of curls,
+and I also put to sleep for one second,
+so we can test and see the differences better.
+So I will launch
+this batch script because
+I don't want to type everything.
+And you can see I'm sending a get request,
+then post put then another get and then delete finally.
+And if you go to the server,
+these are and the server logs, created, updated, deleted.
+So, we send different methods and then on the server,
+we accept the different methods and
+we did different logic,
+we executed different functionality
+based on those methods.
+So as you can see, with Express it's very clean,
+very easy to organize your logic
+your a restful API in different places.
+So we did the crunch create,
+read, update and delete.
+There are a few other methods such as,
+options, head and patch.
+Most of the times you don't need them.
+Patch and head is for cross origin resource sharing,
+but there is also a middleware,
+you can just apply the middle ware and use it.
+And then patch it's actually a partial replace.
+So patch that's what you should use instead of put,
+but because most developers do use put as
+a partial replace not as a complete replace,
+I'm showing it to you here.
+So that's pretty much it.
+It's very easy to define routes.
+And of course, the functions themselves,
+they would be coming from different files
+in your real life project.
+You don't want to have all of
+the logic in one big file, sort of a.js,
+you would be putting these functions
+in different files and then you would use module.
+Exports in that file to
+create a module, to modularize it.
+And here you would say require
+a file and you would apply the name,
+the name of the module and the name of the function.
+You would not define functions here.
+You would create routes folder in
+your project and you would use it.
+So that's it for this exercise.
+I'll see you in the next video.
+
+
+### Implementing REST API Routing
+
+Servers must have routes, otherwise they are not useful at all. As a very basic
+example, consider this Express route which serves Hello World string to requests 
+made to / (root address):
+
+```node
+app.get('/', (req, res) => {
+  res.send('Hello World')
+})
+```
+
+You can notice that `app.get()` is referring to the GET HTTP method. That's what
+browsers will use navigate to a URL in a browser.
+
+The first argument is a URL string. It could be a regular expression as well. 
+The second argument is a request handler with request and response objects.
+
+If you have two routes in app.js:
+
+```node
+const {homePage, getUsers} = require('./routes')
+
+app.get('/', homePage)
+app.get('/users', getUsers)
+```
+
+The first one basically takes care of all the GET requests to the home page (/), 
+such as http://localhost:3000/ and triggers the homPage method. The second takes 
+care of requests to /users, such as http://localhost:3000/users and triggers the 
+getUsers method.
+
+Both of the routes process URLs in a case-insensitive manner and in the same way 
+with trailing slashes.
+
+
+---
+
+#### Express Framework   Implementing REST API Routing   Handling Various HTTP requests
+
+
+
+
