@@ -1526,3 +1526,46 @@ response.status(404).end()
 ---
 
 #### Express Framework   URL Parameters, Query Strings and Input Validation   URL parameters
+
+### Video: Accessing URL Parameters
+
+TODO: missing video
+
+### Accessing URL Parameters
+
+To access URL parameters such as for IDs, names or other information, define the parameter in the URL pattern string 
+with a colon `:` and then access the parameter with `req.params`.
+
+For example, for requests like this one which has an user ID after the string /users/:
+
+    GET /users/572611d856b11dcec61651bb
+    
+Use a URI segment parameterized by prefixing it with a semi-colon:
+
+```node
+app.get('/users/:id', (request, response) => {
+  const userId = request.params.id
+  fetchUser(userId, (error, user) => {
+    if (error) return response.status(500).send(error)
+    response.send(user)
+  })
+})
+```
+
+### Multiple URL Parameters
+
+Express supports multiple URL parameters in a route. Simply define all of them in the URL pattern. For example for the 
+request GET /users/:id/transactions/:transactionId/:filter, the route will look like:
+
+```node
+app.get('/users/:id/transactions/:transactionId/:filter', (req, res) => {
+  const usersId = request.params.id,
+    transactionId = request.params.transactionId,
+    filter = request.params.filter
+  res.status(200).send()
+})
+```
+
+---
+
+#### Express Framework   URL Parameters, Query Strings and Input Validation   Accessing Query String Data
