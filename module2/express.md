@@ -1622,3 +1622,35 @@ In this middleware, if/else is used to execute different code based on the value
 ---
 
 #### Express Framework   URL Parameters, Query Strings and Input Validation   Input validation
+
+# Video: Input Validation
+
+TODO: missing video
+
+### Input Validation
+
+It is very important to validate the incoming data. Never trust the client. The data can be 
+malformed causing your app to crash or just malicious on purpose if a client is an attacker.
+
+A manual validation can be done in each route which accepts data. If it's in the request 
+body, you can use an if/else statement:
+
+```node
+app.post('/login', (req, res) => {
+  if (!req.body.email || !req.body.password)
+    return res.send({
+      error: 'Please enter your email and password.'
+    })
+  if (!validateEmail(req.body.email) || ! validatePassword(req.body.password))
+    return res.send({
+      error: 'Invalid format for email and/or password.'
+    })
+  login(req.body.email, req.body.password)
+})
+```
+
+A better way is to use express-validator because it allows you to use a schema.
+
+---
+
+#### Express Framework   Summary of Module 2 Express Framework   Summary
