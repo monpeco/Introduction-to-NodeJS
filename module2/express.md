@@ -1654,3 +1654,30 @@ A better way is to use express-validator because it allows you to use a schema.
 ---
 
 #### Express Framework   Summary of Module 2 Express Framework   Summary
+
+# Video: Summary of Module 3: Express
+
+TODO: missing video
+
+Summary of Module 3: Express
+
+In this module we learned what Express.js is and how it works. We also explored different ways to install it and 
+use its scaffolding (command-line tool) to generate apps. We also covered how to handle routing for the REST API approach.
+
+In this module, you've learned many topics and here's some of key things to keep in mind:
+
+* Express provides flexible foundation and built-in features for handling requests and responses
+* To install Express generator, run npm i -g express-generator
+* app.listen() is a shortcut to boot us an Express server
+* In atypical express project structure order in which statements defined matter greatly
+* Middleware is just a function with request, response and next arguments
+* Parsing body can be done easily with body-parser
+* The list of useful middleware from npm can be found at https://github.com/azat-co/cheatsheets/tree/master/express4
+* To implement REST API routing, use app.NAME() syntax where NAME is an HTTP method in lowercase
+* Handling various HTTP requests
+* Request object has params, query and headers properties
+* Response object has redirect(), json(), sendFile() and send() methods
+
+---
+
+#### Express Framework   Module 2 Tutorial Lab REST API with Express   REST API with Express
