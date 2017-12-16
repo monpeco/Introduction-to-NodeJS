@@ -1681,3 +1681,140 @@ In this module, you've learned many topics and here's some of key things to keep
 ---
 
 #### Express Framework   Module 2 Tutorial Lab REST API with Express   REST API with Express
+
+# REST API with Express
+
+### Module 2 Tutorial: REST API with Express
+
+In this tutorial lab, you will build a REST API with Express. For the purposes of this tutorial, the data will be stored in the memory of the server instead of a database. This lab will use concepts and skills learned in the module 2 such as express routing, middleware, and query parameters.
+
+### REST API with Express
+In modern web development APIs play a huge role. It's very important to know how to build them. In this lab, you'll build a RESTful API using the Express framework.
+
+The REST API server will have the following four endpoints:
+
+* GET /accounts to retrieve a list of accounts
+* POST /accounts to create a new account
+* PUT /accounts to update an account
+* DELETE /accounts to remove an account
+
+Each endpoint is a server route, i.e., clients can make HTTP requests and the server will respond.
+
+The server implementation consists of the following steps:
+
+* Create a new folder, package.json and install packages
+* Create server.js with an Express app
+* Implement four endpoints in the Express app
+* Test the server
+
+Let's get started with a fresh folder in which you will implement the server. Open your terminal application or command prompt, and execute the following commands:
+
+    mkdir rest-api
+    cd rest-api
+
+Then, create package.json either manually with your favorite code editor or with the npm init command:
+
+    npm init -y
+    
+Our project will leverage a few npm modules which are Express middleware (plugins):
+
+* **morgan**: logging of the server requests in various formats for debugging, auditing and other purposes
+* **body-parser**: parsing of the incoming request body/payload into a Node object from a string or other formats
+* **errorhandler**: basic user friendly error messaging
+Install the three packages which will be your project dependencies:
+
+    npm i express morgan errorhandler -E
+
+Now everything is ready for the implementation of the server. Create a new file server.js in the newly created folder (project root). The server.js file must be on the same folder level as your package.json and node_modules.
+
+In the server.js file, start importing the dependencies using const and require():
+
+```node
+const express = require('express') 
+const logger = require('morgan')
+const errorhandler = require('errorhandler')
+const bodyParser = require('body-parser')
+```
+
+Next, define the store object and the accounts array which will be your in-memory data store. This data store will work synchronously, i.e., there will be no callbacks or promises. In the next modules, you'll learn how to use database instead of the in-memory store. For now, in-memory story will keep things simple.
+
+```node
+let store = {}
+store.accounts = []
+```
+
+Now, create an Express app and apply middleware for request payload (body) parsing, logging and error handling:
+
+```node
+let app = express()
+app.use(bodyParser.json())
+app.use(logger('dev'))
+app.use(errorhandler())
+```
+
+The next part is about implementing GET /accounts. The way you define the GET route is with app.get(). The URL pattern is just /accounts and the result which is sent back to the client is the entire accounts array.
+
+```node
+app.get('/accounts', (req, res) => {
+  res.status(200).send(store.accounts)
+})
+```
+
+Similarly to how you defined the GET endpoint/route, you can define POST. The difference is in the method, i.e., you use app.post(). The response to the client will have the ID of the newly created account while the status is 201, i.e., a new entity is created.
+
+```node
+app.post('/accounts', (req, res) => {
+  let newAccount = req.body
+  let id = store.accounts.length
+  store.accounts.push(newAccount)
+  res.status(201).send({id: id})
+})
+```
+
+For the PUT method, you want to extract the ID of the account which is being updated. This is done with the URL parameter which is defined by the colon : sign and accessed with req.params.id:
+
+```node
+app.put('/accounts/:id', (req, res) => {
+  store.accounts[req.params.id] = req.body
+  res.status(200).send(store.accounts[req.params.id])
+})
+```
+
+Last but not least is the DELETE method. Use splice to remove an item from the data store array store.accounts, and the URL parameter as the account index which you can access from req.params.id:
+
+```node
+app.delete('/accounts/:id', (req, res) => {
+  store.accounts.splice(req.params.id, 1)
+  res.status(204).send()
+})
+
+app.listen(3000)
+```
+
+You are all set. Now launch the server with node server.js in Terminal / Command Prompt from the project root.
+
+Use Postman, CURL or any other HTTP request agent to test your server. If you want to use Postman, download it from https://www.getpostman.com, then use its graphical user interface (GUI) to make requests. When using Postman for the POST request, make sure to select body, raw and JSON (application/json) settings to avoid a common mistake of not providing the right request payload format.
+
+I recommend using CURL because the CURL commands are plain text, not GUI and they are easier to replicate from the text of this lab. The CURL tool is built into the most POSIX (macOS and Linux) distributions but it's also available for Windows via https://curl.haxx.se/download.html.
+
+Here's the CURL code which you can execute to create a new account (POST), update it (PUT), retrieve it account (GET) and then delete it (DELETE).
+
+```
+//posts account data
+curl -H "Content-Type: application/json" -X POST -d '{"balance": 100, "name":"checking"}'  "http://localhost:3000/accounts" 
+
+//updates account data at a specified id
+curl -H 'Content-Type: application/json' -X PUT -d '{"balance": 200, "name": "savings"}'  "http://localhost:3000/accounts/0" 
+
+//gets account data
+curl "http://localhost:3000/accounts" 
+
+//deletes account data and a specified id
+curl -X DELETE "http://localhost:3000/accounts/0" 
+```
+
+If you are curious to see the status code of the response and other information, then add -iv flag to the CURL commands.
+
+That's it. You implemented your REST API server with Express. You have learned how to create this server from scratch by creating folders and files, installing packages, using in-memory store, implementing routes and testing with CURL.
+
+---
