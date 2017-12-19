@@ -23,9 +23,14 @@ app.post('/accounts', (req, res) => {
   let newAccount = req.body;
   let id = store.accounts.length;
   store.accounts.push(newAccount);
-    console.log({id: id});
-
+  console.log({id: id});
   res.status(201).send({id: id});
+});
+
+app.put('/accounts/:id', (req, res) => {
+  console.log(`req.params.id: ${req.params.id}`);
+  store.accounts[req.params.id] = req.body;
+  res.status(200).send(store.accounts[req.params.id]);
 });
 
 app.listen(port);
