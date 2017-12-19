@@ -3,7 +3,7 @@ const logger = require('morgan');
 const errorhandler = require('errorhandler');
 const bodyParser = require('body-parser');
 
-const port = 3000;
+const port = process.env.PORT;
 
 let store = {};
 store.accounts = [];
@@ -36,5 +36,9 @@ app.put('/accounts/:id', (req, res) => {
 app.listen(port);
 console.log(`Server running in port ${port}`);
 /*
+curl localhost:8080/accounts
 
+curl -X POST -d '{"key": "another value"}' localhost:8080/accounts -i -H "content-type: application/json"
+
+curl -X PUT -d '{"key": "another value but new"}' localhost:8080/accounts/2 -i -H "content-type: application/json"
 */
