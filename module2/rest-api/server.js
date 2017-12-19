@@ -1,16 +1,23 @@
 const express = require('express');
-const app = express();
+const logger = require('morgan');
+const errorhandler = require('errorhandler');
 const bodyParser = require('body-parser');
 
+const port = 3000;
+
+let store = {};
+store.accounts = [];
+
+let app = express();
+
 app.use(bodyParser.json());
+app.use(logger('dev'));
+app.use(errorhandler());
 
-app.get('/profile', (req, res) => {
-  console.log('GET /profile');
-  res.send('GET /profile');
-})
 
-app.listen(3000);
 
+app.listen(port);
+console.log(`Server running in port ${port}`);
 /*
 
 */
