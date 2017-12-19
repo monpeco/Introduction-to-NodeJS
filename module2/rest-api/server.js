@@ -33,6 +33,11 @@ app.put('/accounts/:id', (req, res) => {
   res.status(200).send(store.accounts[req.params.id]);
 });
 
+app.delete('/accounts/:id', (req, res) => {
+  store.accounts.splice(req.params.id,1);
+  res.status(200).send(`account: ${req.params.id} deleted.\n`);
+});
+
 app.listen(port);
 console.log(`Server running in port ${port}`);
 /*
@@ -41,4 +46,6 @@ curl localhost:8080/accounts
 curl -X POST -d '{"key": "another value"}' localhost:8080/accounts -i -H "content-type: application/json"
 
 curl -X PUT -d '{"key": "another value but new"}' localhost:8080/accounts/2 -i -H "content-type: application/json"
+
+curl -X DELETE localhost:8080/accounts/1
 */
