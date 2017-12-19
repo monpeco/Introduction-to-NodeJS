@@ -18,6 +18,16 @@ app.get('/accounts', (req, res) => {
   res.status(200).send(store.accounts);
 });
 
+app.post('/accounts', (req, res) => {
+  console.log(req.body);
+  let newAccount = req.body;
+  let id = store.accounts.length;
+  store.accounts.push(newAccount);
+    console.log({id: id});
+
+  res.status(201).send({id: id});
+});
+
 app.listen(port);
 console.log(`Server running in port ${port}`);
 /*
