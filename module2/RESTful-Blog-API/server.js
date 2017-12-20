@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const errorhandler = require('errorhandler');
 const bodyParser = require('body-parser');
+const posts = require('./routes/posts');
 const port = process.env.PORT;
 
 const app = express();
@@ -10,13 +11,9 @@ app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(errorhandler());
 
-app.get('/posts', (req, res) => {
-  res.status(200).send('resource: posts, method: GET\n');
-});
+app.get('/posts', posts.myGet);
 
-app.post('/posts', (req, res) => {
-  res.status(200).send('resource: posts, method: POST\n');
-});
+app.post('/posts', posts.myPost);
 
 app.listen(port);
 console.log(`Server running on port: ${port}`);
