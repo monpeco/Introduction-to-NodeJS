@@ -1818,3 +1818,188 @@ If you are curious to see the status code of the response and other information,
 That's it. You implemented your REST API server with Express. You have learned how to create this server from scratch by creating folders and files, installing packages, using in-memory store, implementing routes and testing with CURL.
 
 ---
+
+#### Express Framework   Module 2 Tutorial Lab REST API with Express   Video Walkthrough and Solution
+
+# Video: REST API with Express Tutorial
+
+https://youtu.be/9SFnbUoLBqg
+
+>>Hello, welcome to Module two lab one.
+In this lab we will be using
+Express as well as three middleware
+for express: errorhandler, body-parser and morgan.
+Body-parser will allow us to interpret
+and to parse to create objects out of payloads,
+incoming payloads from our clients.
+Errorhandler will give us
+very basic error handling capability
+for the express server and Morgan
+will give us the server logs.
+So this is my server,
+this is my package the adjacent file.
+And now I'm going to server.jsfile in
+which we will start implementing our server.
+As usual first few lines
+we import all the necessary modules,
+all our dependencies, or our NPM dependencies.
+For example express and
+then logger equals require Morgan.
+We don't need to use the same name,
+we choose a different name such as
+Morgan Library but the variable would be logger.
+Same thing with errorhandler.
+We imported using require and then we instantiate.
+We create an instance of
+express app invoking express method.
+Then I'm defining a store.
+This would be our mock storage.
+We would not use a database yet.
+We will just use in memory store such as
+this object called store.
+Then I am also importing body parser.
+Again you can see that my name,
+the variable name, is different.
+It's camel keys and then NPM name has a dash.
+Dash is not the valid JavaScript name
+so we camel case it.
+Then I'm applying app.use,
+body parser logger and errorhandler.
+Then I can define my first route app.get accounts.
+In the cold back I'm
+providing a request handler req and res,
+my two arguments, res.status 200.
+So, I'm sending that the status is okay.
+I'm sending the accounts using the store data accounts.
+The next route is about posting in accounts.
+So creating an account.
+And how do you create an account when it's an array?
+That's right. So we would push an item to an array.
+But first of all let's get the ID of new account.
+That would be the current length of our array.
+And then we push that item.
+So why we need to get the ID?
+Because it's good to send that ID back.
+And the status 201 means the entity was created.
+Then put app.put account. What does it do?
+It will update a certain record a certain account.
+That's why we need an individual ID in the URL parameter.
+We'll define it with a colon and we
+access it with req.params.id.
+So, we are updating a particular account.
+We're sending back status 200.
+We can also send 204 but 204 doesn't have a body.
+So in this case we want to
+see the new updated data for the account.
+And then finally for
+our crowd to finish all the functionality,
+we need to be able to delete a certain account.
+Certain means it's an individual, it's one account.
+So that's why we are specifying ID using colon ID,
+and then I'm using splice by providing
+that ID which will be an index in
+our array and providing one
+because we need to delete just one account.
+204 doesn't have a body.
+So I'm just using send with
+parentheses and then app.listen(3000).
+So that's all.
+The code for our crowd restful in memory API.
+How do you actually test it?
+There is an application that's called Postman.
+You can use Corel, you can
+write no G-S test using Markheim.
+But I wanted to show you
+just a different way how you can test your API.
+So let's say this is a get request.
+You type localhost: 3000/accounts.
+Now, right now my server hasn't been started so
+I should be getting an error.
+So cannot GET /accounts.
+So let's go ahead and start the server.
+I had another server running.
+So, that's totally fine.
+So let's navigate to this folder and let's double check.
+Okay. I do have this file server.js.
+And then I just type node server.js.
+Go back to the postman and send our request.
+Okay, so, this is empty. This is good.
+Let's repeat it. It's still empty.
+Okay, so, now let's go ahead and create a record.
+So, I'm changing post from get to post.
+Now its a post request.
+Then I click on body because I
+want to provide some body some data then I click on raw.
+It's going to be raw data
+and then I click on this drop down.
+It's applications/json, its a Json.
+So, remember body raw application/json.
+And when you type it make sure it's valid JSON.
+And so I need to use double quote.
+So balance would be $100
+and the name would be- so don't forget the double quotes.
+The name wouldn't be checking account.
+Okay. So, I click on send and now I have ID equals zero.
+Okay, so, now I can go into the history on the left side,
+click on my get and click on send.
+So this would be get/accounts and I should see
+my newly created balance checking account.
+So, that's good.
+Okay, so, we were able to read,
+we were able to create.
+And by the way you can also save the status.
+Now, what we can do, we can update.
+So, we change it to put.
+So, for the update we need to provide the proper ID,
+which would be in this case would be zero.
+So let's change the name from checking to
+main checking because later
+we might have other checking accounts,
+and now click send.
+It outputted the new information which is a good.
+The status is 200. That is good.
+So let's double check.
+Let's go to the get and click on send.
+And now you can see the new data, main checking.
+Okay. Let's for a second go
+to the server and see the logs.
+So, these logs they're coming from Morgan,
+that NPM library Morgan.
+So you can see that
+the in memory store works pretty fast,
+just fractions of a millisecond.
+Okay. So now go back and let's change it to delete.
+So now we can actually delete our account.
+So now we can see 204. That was
+expected and the body is empty.
+So, let's double check it using get and now we
+should see an empty response.
+Okay. And we can continue doing it: creating,
+updating, deleting,
+reading, creating, updating, deleting.
+Okay. So let's go back to the code.
+This code is synchronous and obviously when you're
+working with real database or you
+are calling deferred service,
+this is calls so there would be asynchronous, right?
+But everything else, the big picture view stays the same.
+You are creating routes,
+you're defining the middleware
+and then you use package.json to save the versions.
+So that's it for the server.
+Don't forget to terminate it.
+By the way when you terminate it
+of course the data will be gone.
+So, that's for the next module.
+We will learn about the persistence
+and using the actual database.
+Thank you for watching. I'll see you in the next lab.
+
+
+You can download the solution here:
+
+[m2-tutorial-server.js](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/96d79e2e78286861c45dbfc4f61ad743/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/m2-tutorial-server.js)
+
+To run it, make a new project using npm init. Move the server file into the project folder and download all dependencies using npm install. Next run it using 'node m2-tutorial-server.js'.
+
+---
