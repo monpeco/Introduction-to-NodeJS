@@ -2,6 +2,7 @@
 // comments.js so they can be used with require('routes') in server.js
 
 const posts = require('./posts');
+const comments = require('./comments');
 
 var i = 3;
 
@@ -22,6 +23,8 @@ module.exports.myGet = posts.myGet;
 module.exports.myPost = posts.myPost;
 module.exports.myPut = posts.myPut;
 module.exports.myDelete = posts.myDelete;
+
+module.exports.commentsGet = comments.myGet;
 
 module.exports.i = i;
 module.exports.Counter = Counter;

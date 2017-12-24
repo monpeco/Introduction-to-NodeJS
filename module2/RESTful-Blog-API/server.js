@@ -19,6 +19,10 @@ app.put('/posts/:id', posts.myPut);
 
 app.delete('/posts/:id', posts.myDelete);
 
+
+app.get('/comments', posts.commentsGet);
+
+
 app.listen(port);
 console.log(`Server running on port: ${port}`);
 
