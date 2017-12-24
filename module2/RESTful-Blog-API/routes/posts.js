@@ -10,6 +10,7 @@ module.exports.myGet = function(req, res){
 module.exports.myPost = function(req, res){
   res.status(200).send(`resource: posts, method: POST, id: ${index.Counter.count}\n`);
   index.Counter.add();
+  req.body.comments = [];
   index.store.accounts.push(req.body);
 }
 

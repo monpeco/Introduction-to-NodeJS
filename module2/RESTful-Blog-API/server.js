@@ -20,7 +20,8 @@ app.put('/posts/:id', posts.myPut);
 app.delete('/posts/:id', posts.myDelete);
 
 
-app.get('/comments', posts.commentsGet);
+app.get('/posts/:postId/comments', posts.commentsGet);
+app.post('/posts/:postId/comments', posts.commentsPost);
 
 
 app.listen(port);
