@@ -5,9 +5,11 @@ const posts = require('./posts');
 
 var i = 3;
 
+let store= {};
+store.accounts = [];
+
 var Counter  = {
     count: 0,
-    store: {},
     add: function() {
         Counter.count++;
     },
@@ -23,3 +25,4 @@ module.exports.myDelete = posts.myDelete;
 
 module.exports.i = i;
 module.exports.Counter = Counter;
+module.exports.store = store;
