@@ -10,3 +10,8 @@ module.exports.myPost = function(req, res){
   index.store.accounts[req.params.postId].comments.push(req.body);
 }
 
+module.exports.myPut = function(req, res){
+  res.status(200).send('resource: comments, method: PUT\n');
+  index.store.accounts[req.params.postId].comments[req.params.id] = req.body;
+}
+

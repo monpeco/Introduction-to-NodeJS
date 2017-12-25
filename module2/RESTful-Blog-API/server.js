@@ -22,6 +22,7 @@ app.delete('/posts/:id', posts.myDelete);
 
 app.get('/posts/:postId/comments', posts.commentsGet);
 app.post('/posts/:postId/comments', posts.commentsPost);
+app.put('/posts/:postId/comments/:id', posts.commentsPut);
 
 
 app.listen(port);
