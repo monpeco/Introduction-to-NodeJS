@@ -15,3 +15,8 @@ module.exports.myPut = function(req, res){
   index.store.accounts[req.params.postId].comments[req.params.id] = req.body;
 }
 
+module.exports.myDelete = function(req, res){
+  index.store.accounts[req.params.postId].comments.splice(req.params.id,1);
+  index.Counter.remove();
+  res.status(200).send(`comments: ${req.params.id} deleted\n`);
+}

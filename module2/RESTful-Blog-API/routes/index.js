@@ -27,6 +27,7 @@ module.exports.myDelete = posts.myDelete;
 module.exports.commentsGet = comments.myGet;
 module.exports.commentsPost = comments.myPost;
 module.exports.commentsPut = comments.myPut;
+module.exports.commentsDelete = comments.myDelete;
 
 module.exports.i = i;
 module.exports.Counter = Counter;
