@@ -12,11 +12,8 @@ app.use(logger('dev'));
 app.use(errorhandler());
 
 app.get('/posts', posts.myGet);
-
 app.post('/posts', posts.myPost);
-
 app.put('/posts/:id', posts.myPut);
-
 app.delete('/posts/:id', posts.myDelete);
 
 
