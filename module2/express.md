@@ -2107,3 +2107,158 @@ curl -X DELETE "http://localhost:3000/posts/0"
 ```
 
 ---
+
+#### Express Framework   Module 2 Assignment Lab RESTful Blog API   Video Walkthrough and Solution
+
+# Video: RESTful Blog API Tutorial
+
+TODO: missing video
+
+>> Welcome to module two, Lab number two.
+This is the solution for
+the exercise that we have in the document.
+And as you can see,
+I'm in the server.js file.
+In this file, I am requiring the routes.
+And you can see there is no file routes.js,
+there is only a folder.
+So if you go into this folder,
+you can see there is comments.js, index.js and posts.js.
+So let's go into the index.js because
+that's actually the file that will be imported.
+And this is how it looks like.
+We are importing to other files,
+and we are exporting it right
+away as part of this object.
+So in the server.js, this object routes,
+it will have two properties,
+dot posts and dot comments.
+And you can see how I'm applying them in the routes.
+So for the post routes,
+I would use routes.post and then I have certain methods.
+So you can see those methods in the file posts.js.
+Same idea for the comments,
+routes.comments and I'm applying getComment,
+addComment, updateComment and removeComment.
+I'm not invoking the methods,
+I need to pass the definition
+just as you would define a function.
+Here, in line like this,
+you would not invoke this function,
+this is a function definition, right?
+So the same idea,
+only we're using names and we're using modules.
+Also, take a look at this parameter ID.
+You can have more than one parameter ID.
+So for example, a particular post can have many comments.
+So we would provide post ID and comment ID as well.
+What else interesting is happening?
+So you can see I have my own middleware,
+but I also have middleware coming from npm modules.
+This middleware allows me to
+use the req.store inside of my files.
+I don't want to path this reference,
+I don't want to path this variable store,
+and truth to be told,
+I cannot access it in this file.
+There is no store,
+so the only good way to use it
+is to decorate the request object. What is decoration?
+Decoration is basically you creating this property,
+req.store, and that's how I access my data store.
+So this file, posts.js,
+it has four methods: get post,
+add post, update post and remove post.
+This is the best practice.
+So when you are working with an individual record,
+you would assume there is a URL parameter.
+So I just post ID for example,
+and you would use a singular name.
+When you're working with the plural,
+for example, get posts,
+so you will need to output multiple posts,
+that's how you would name it, getPosts.
+And of course, it all camel cased.
+Let's take a look at comments.
+Comments also have four methods,
+our typical CRUD: create,
+read, update and delete.
+What's interesting here is that we are using two IDs,
+so post ID and then also we would use,
+when we're updating, we would use
+current ID in addition to the post ID.
+So we can use multiple parameters,
+not just one parameter.
+Let's go back to the server.js
+and let's remember that it's listening on port 3000,
+and I also created this file,
+there's data stage for
+easier testing, for automated testing.
+Of course, you can use postman,
+you can manually submit
+code requests or you can create another,
+not just create to work with them to test your API.
+So let's make sure we are in the right folder.
+That looks correct and I am starting my server.
+Let it run and I will open a new terminal window,
+and I would need to navigate into the proper folder,
+so I can just drag and drop it in my editor.
+And now, I would launch the test.sh.
+So I see some output.
+And now let's go back to the server.
+Get, post, put, delete,
+so everything looks correct.
+We didn't see any errors.
+So what is happening?
+We are getting the seed information,
+the information which is
+hard coded in our server.js. It's an object.
+And then creating a new record,
+I am modifying the record.
+Let's scroll a little bit.
+So I'm using ID as well.
+And then I am deleting that record.
+So this is a fully functioning CRUD.
+Again, it's in memory storage.
+This is our seed data and it has comments nested inside.
+So this is a typical structure when
+you would nest the multiple documents inside.
+And then this is the best practice how you
+would separate the logic into multiple files.
+So your server.js needs to be very, very small.
+Mine is under 50 lines of code.
+I do not put the actual logic in this file.
+The actual logic what to do with comments,
+with posts, it's in different files,
+so that's how you can organize
+your application in a nice way.
+And then, of course, you can apply,
+maybe this is all throughout.
+So you would apply that as well,
+and you can again use the modular pattern.
+So that's where express really shines.
+Express allows you to customize,
+configure a lot of things and
+also organize your code better.
+So that it. I'll see you in the next module in
+which we will learn how to persist the data with MongoDB.
+
+
+You can download the solution here.
+
+This is the main server file that should be in your project root:
+
+[m2-assignment-server.js](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/410f7720190d512cdf292c994e4c9e74/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/m2-assignment-server.js)
+
+These files should be in the 'routes' folder of your project:
+
+[posts.js](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/da56fcb5943924151d40ad1577a681ff/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/posts.js)
+
+[comments.js](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/580c0311ea89693e99e975397be90b7e/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/comments.js)
+
+[index.js](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/cf098205ac5aed1ae37c667dd5c58c28/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/index.js)
+
+To run the server, make a new project using npm init. Next, download the server and move it to the root of your project. Next, download posts.js, comments.js, and index.js and put them in the routes folder of your project. Make sure to download all dependencies with npm install. You can run the server with 'node m2-assignment-server.js'.
+
+--- ---
+
