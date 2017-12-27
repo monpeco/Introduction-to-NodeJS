@@ -181,3 +181,119 @@ MongoDB is a document store NoSQL database. It's great at being distributed and 
 ---
 
 ### Persistence with MongoDB   MongoDB Basics   Launching MongoDB
+
+# MongoDB Shell (mongo)
+
+```shell
+# Change user to /data/db
+sudo chown ubuntu:ubuntu -R /data/db
+
+# Execute mongod
+mongod -f /etc/mongodb.conf 
+
+# Another terminal
+mongo
+```
+
+To launch the MongoDB shell (mongo), open a new terminal window, and run the following command:
+
+    mongo
+
+Your command prompt should change from default $ (if you had it), to Mongo's >. This means your 
+client was able to connect to the local database instance and you are ready to start manipulating 
+the data in that database instance.
+
+### MongoDB Shell (mongo)
+
+To test the database, use the JavaScript-like interface and commands such as save and find:
+
+    > db.test.save({a:1})
+    > db.test.find()
+
+MongoDB uses JavaScript so all JavaScript and Node commands, classes and methods are a fair 
+game in the Mongo console!
+
+Some useful MongoDB Shell commands to know:
+
+* > help: List of available Mongo shell commands
+* > show dbs: List all the databases in this DB server/instance
+* > use board: Work on a specific database named board
+* > show collections: List all collections in this database
+* > db.messages.remove();: Remove all documents from messages collection
+* > var a=db.messages.findOne();
+* > print json(a);
+* > a.message="hi";
+* > db.messages.save(a);: Save method
+* > db.messages.find({});: A read query
+* > db.messages.update({name:"John"},{$set:{message:"bye"}});: An update documents query
+* > db.messages.find({name:"John"});: A read query with a specific condition/query which matches only documents with property name which equals to value John
+* > db.messages.remove({name:"John"});: A remove query with a condition
+
+There are no schemas in MongoDB. Each document can have a completely different structure. 
+This allows for de-normalization for the purposes of performance optimization and creation 
+of distributed systems at a large scale.
+
+Indexes are used to quickly perform search queries. Without indexes, MongoDB has to scan 
+every document in the collection and find the ones that match the query which takes a long 
+time. _id is the unique index that is created default, but you can create a custom index 
+with one or more properties/fields. Each new index field will slow down the insertion 
+operation but will quicken a search/read query on that index. Thus, having the right 
+indexes is a best practice and a balance.
+
+---
+
+#### Persistence with MongoDB   MongoDB Native Driver   MongoDB Native Driver (mongodb)
+
+# MongoDB Native Driver (mongodb)
+
+In addition to Mongo shell, we can build our own methods and clients using the Node.js 
+Native Driver for MongoDB: https://github.com/christkv/node-mongodb-native.
+
+Create a new project folder (or use an existing one, in this case skip directly to npm 
+install) and create package.json with npm init:
+
+    mkdir mongodb-script-project
+    cd mongodb-script-project
+    npm init -y
+
+To install the driver use npm:
+
+    npm install mongodb
+
+In your node.js code, simply import the driver library:
+
+```node
+const mongodb = require('mongodb')
+```
+
+### Connecting to the Database
+To establish the connection to the MongoDB instance, you need to have the database instance 
+running. You can do so in a Terminal/Command Prompt with mongod. By default, it will be at 
+localhost:27017.
+
+In your Node script, create a client object and invoke connect() using a database URI which 
+is a string that has the location and could have the username and password too.
+
+```node
+const mongodb = require('mongodb')
+const MongoClient = mongodb.MongoClient
+
+// Connection URI
+const url = 'mongodb://localhost:27017/edx-course-db'
+// Use connect method to connect to the Server
+MongoClient.connect(url, (err, db) => {
+  if (err) return process.exit(1)
+  console.log('Kudos. Connected successfully to server')
+  // Perform queries
+  db.close()
+})
+```
+
+As a result of this script, you should see “Kudos. Connected successfully to server”. If you 
+see it, that means your DB instance was installed property, your driver was installed property 
+and you can connect to the database instance from Node and start writing the code to manipulate
+data in the database (save, remove, update, etc.). There are queries which are similar to the 
+methods in the Mongo shell but they are asynchronous. Let's see how to perform these queries 
+in the next lesson.
+
+
