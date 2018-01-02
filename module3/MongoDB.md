@@ -505,3 +505,49 @@ another document (Bob). In the end we had only two documents left.
 
 ---
 
+#### Persistence with MongoDB   MongoDB GUI Client MongoUI   MongoDB GUI client MongoUI
+
+### Video: MongoDB GUI client MongoUI
+
+TODO: video missing
+
+### MongoDB GUI client MongoUI
+
+MongoUI is an open-source web and desktop app which allows you to administer local and remote MongoDB 
+instances via GUI. No need to type commands in a terminal anymore. The convenient interface will allow 
+to create, update, remove and filter/search documents. You can switch between collections or even 
+databases with just a single click.
+
+It is currently a standalone tool (run as an app locally or on your server). This is a brand new v2 
+of MongoUI. The old version uses DerbyJS, but the new version uses Webpack, React, React Router, React 
+Bootstrap and of course Express and Node.
+
+### Installation
+Execute the npm install -g mongoui command in any folder in the Terminal/Command Prompt to install 
+MongoUI globally:
+
+    npm i -g mongoui
+
+Run the following command to launch MongoUI:
+
+    mongoui
+
+Open the browser at localhost:3001 if it hasn't been opened automatically. You need to have a database 
+instance running (mongod) to access the data. Once you have a database instance running, click on the 
+database you want to use and then on the collection you want to work with.
+
+---
+
+#### Persistence with MongoDB   Summary of Module 3 Persistence with MongoDB   Summary
+
+### Video: Summary of Module 3: Persistence with MongoDB
+
+### Summary of Module 3: Persistence with MongoDB
+In this module you've learned how to launch MongoDB, use REPL, and work with it 
+from Node. Key things to remember:
+
+* REPL is launched with mongo while a database instance with mongod
+* The MongoDB native driver has methods which support error-first callbacks: find(), update(), remove(), and insert()
+* MongoUI can be installed with `npm i -g mongoui` and launched with `mongoui`
+
+---
