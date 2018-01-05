@@ -55,9 +55,12 @@ const insertDocuments = (db, callback) => {
   collection.insert([
     {name : 'Bob'}, {name : 'John'}, {name : 'Peter'} // 3 documents
   ], (error, result) => {
-    if (error) return process.exit(1)
-    console.log(result.result.n) // will be 3
-    console.log(result.ops.length) // will be 3
+    if (error) { 
+      console.log('error in insert');
+      return process.exit(1);
+    }
+    console.log('result.result.n :' + result.result.n) // will be 3
+    console.log('result.ops.length: ' + result.ops.length) // will be 3
     console.log('Inserted 3 documents into the edx-course-students collection')
     callback(result)
   })
