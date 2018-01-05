@@ -1,6 +1,9 @@
 const async = require('async');
 const MongoClient = require('mongodb').MongoClient;
 
+const batch = process.argv[2]
+console.log(`batchSize: ${batch}`);
+
 const url = 'mongodb://localhost:27017/edx-course-db'
 
 MongoClient.connect(url, (error, client) => {
