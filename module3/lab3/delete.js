@@ -7,13 +7,13 @@ MongoClient.connect(url, (error, client) => {
   if (error) return process.exit(1)
   
   console.log('Connection is OK')
-  var db = client.db('mytestingdb');  
+  var db = client.db('customerDB');  
   
 
-  const collection = db.collection('students')
+  const collection = db.collection('customers')
   collection.remove({}, (error, result) => {
     if (error) return process.exit(1)
-    console.log(`Removed ${result.result.n} documents`)
+    console.log(`Removed ${result.result.n} documents\n`)
   })
   client.close();
   
