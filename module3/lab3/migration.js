@@ -1,8 +1,17 @@
 const async = require('async');
 const MongoClient = require('mongodb').MongoClient;
 
+const customerData = require('./m3-customer-data.json')
+const customerAddresses = require('./m3-customer-address-data.json')
+
 const batch = process.argv[2]
 console.log(`batchSize: ${batch}`);
+
+const taskCount = customerData.length / batch;
+console.log(`customerData.length: ${customerData.length}`);
+console.log(`taskCount: ${taskCount}`);
+
+
 
 const url = 'mongodb://localhost:27017/edx-course-db'
 
