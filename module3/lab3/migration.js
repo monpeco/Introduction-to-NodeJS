@@ -57,17 +57,18 @@ MongoClient.connect(url, (error, client) => {
     console.log('result.ops.length: ' + result.ops.length);
   });
   
-  
-  asyncParallel([
-    function() {
-      console.log('one');
-    },
-    function(cb) {
-      console.log('two');
-    }
-  ], function(err, results) {
+  let customers = [];
+  function newTask(start, end){
+    console.log(`start: ${start}, end: ${end}`);
+  }
+
+  for (let i=0;i<3;i++){
+    customers.push(function(callback){ callback(null,newTask(i, i+10))});
+  }
+
+  asyncParallel(customers, function(err, results) {
     if (err) return console.log(err);
-    console.log(results);
+    console.log('Insert data complete');
   });  
   
   client.close();
