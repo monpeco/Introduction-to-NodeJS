@@ -5,7 +5,7 @@ const customerData = require('./m3-customer-data.json')
 const customerAddresses = require('./m3-customer-address-data.json')
 
 const batch = process.argv[2]
-console.log(`batchSize: ${batch}`);
+console.log(`batch: ${batch}`);
 
 const taskCount = customerData.length / batch;
 console.log(`customerData.length: ${customerData.length}`);
@@ -62,13 +62,13 @@ MongoClient.connect(url, (error, client) => {
     console.log(`start: ${start}, end: ${end}`);
   }
 
-  for (let i=0;i<3;i++){
-    customers.push(function(callback){ callback(null,newTask(i, i+10))});
+  for (let i=0; i<taskCount; i++){
+    customers.push(function(callback){ callback(null,newTask(i*batch, (i+1)*batch-1))});
   }
 
   asyncParallel(customers, function(err, results) {
     if (err) return console.log(err);
-    console.log('Insert data complete');
+    console.log('Insert data completed');
   });  
   
   client.close();
