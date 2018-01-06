@@ -2,5 +2,5 @@
 
 node delete.js
 
-node migration.js 1000
+node migration.js 100
 
