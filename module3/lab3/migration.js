@@ -46,20 +46,38 @@ MongoClient.connect(url, (error, client) => {
   var db = client.db('customerDB'); 
   const collection = db.collection('customers');
   
-  collection.insert([
-    {jam : 'this is my jam'}
-  ], (error, result) => {
-    if (error) { 
-      console.log('error in insert');
-      return process.exit(1);
-    }
-    console.log('result.result.n :' + result.result.n);
-    console.log('result.ops.length: ' + result.ops.length);
-  });
+
   
   let customers = [];
   function newTask(start, end){
     console.log(`start: ${start}, end: ${end}`);
+    
+    console.log(customerData[99]);
+    console.log(customerAddresses[99]);
+    var result = Object.assign({},customerData[99], customerAddresses[99]);
+    //console.log(result);
+    
+    let loadData = [];
+    
+    for (let i=start; i<=end; i++){
+      var result = Object.assign({},customerData[i], customerAddresses[i]);
+      loadData.push(result);
+    }
+    
+    //console.log(loadData);
+    console.log('loadData');
+
+    collection.insertMany(
+      loadData
+    , (error, result) => {
+      if (error) { 
+        console.log('error in insert');
+        return process.exit(1);
+      }
+      console.log('result.result.n :' + result.result.n);
+      console.log('result.ops.length: ' + result.ops.length);
+    });
+    
   }
 
   for (let i=0; i<taskCount; i++){
