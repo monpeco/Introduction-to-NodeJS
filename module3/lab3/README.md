@@ -59,3 +59,14 @@ To run both scripts:
 
 * async
 * mongodb
+
+## versions
+
+    $ mongo --version
+    MongoDB shell version v3.6.1
+    
+    $ mongod --version
+    db version v3.0.15
+    
+    $ node --version
+    v8.9.1
