@@ -31,6 +31,10 @@ each file correlates to objects in the other file.
 
 ### testing 
 
+First install local dependencies:
+
+    npm install
+
 To test just the data migration from the json files to db:
 
     node migration.js
