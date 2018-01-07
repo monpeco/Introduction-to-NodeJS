@@ -10,7 +10,6 @@ console.log(`batch: ${batch}, customerData.length: ${customerData.length}, taskC
 
 
 MongoClient.connect(url, (error, client) => {
-  
   if (error) return process.exit(1);
 
   console.log('Connection is okay')
@@ -30,13 +29,10 @@ MongoClient.connect(url, (error, client) => {
     }
  
     collection.insertMany( customerResults, (error, result) => {
-      if (error) { 
-        console.log('error in insert');
-        return process.exit(1);
-      }
+      if (error) return process.exit(1);
+      
       console.log('result.ops.length: ' + result.ops.length);
     });
-    
   }
 
   for (let i=0; i<taskCount; i++){
@@ -50,4 +46,3 @@ MongoClient.connect(url, (error, client) => {
   
   client.close();
 });
-
