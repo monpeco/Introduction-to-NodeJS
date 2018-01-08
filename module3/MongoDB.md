@@ -687,4 +687,21 @@ Just in case you need CURL commands to test your CRUD, here are the requests to 
 
 ---
 
+#### Persistence with MongoDB   Module 3 Tutorial Lab CRUD REST API with Node, Express and MongoDB   Video Walkthrough and Solution
 
+# Video: CRUD Rest API with Node, Express and MongoDB Tutorial
+
+TODO: missing video
+
+You can download the solution here:
+
+[m3-tutorial-server.js](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/a0c71aa07f37f7a55c8255b0fec7bac7/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/m3-tutorial-server.js)
+
+To run the server, make a new project with npm init and move the server file into your project 
+root. Make sure to download all dependencies with npm install. Make sure you have a mongoDB 
+instance running as well. You can run the server with 'node m3-tutorial-server.js'.
+
+
+---
+
+#### 
