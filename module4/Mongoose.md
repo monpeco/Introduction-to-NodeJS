@@ -652,13 +652,15 @@ It has a lot of methods, not just find.
 
 ### Building models with Mongoose
 
-As in many other ORMs, in Mongoose, the cornerstone object is a model. To compile a schema into a model, use mongoose.model(name, schema)—for example,
+As in many other ORMs, in Mongoose, the cornerstone object is a model. To compile a schema 
+into a model, use mongoose.model(name, schema)—for example,
 
 ```node
 let Book = mongoose.model('Book', bookSchema)
 ```
 
-The first parameter is just a string, which we can use later to pull the instance of this model. Usually, this string is the same as the object literal for the model (e.g., Book).
+The first parameter is just a string, which we can use later to pull the instance of this model. 
+Usually, this string is the same as the object literal for the model (e.g., Book).
 
 Models are used to create documents (actual data). To do so, call new ModelName(data)—for example,
 
@@ -667,10 +669,14 @@ let practicalNodeBook = new Book({ name: 'Practical Node.js' })
 let javascriptTheGoodPartsBook = new Book({ name: "JavaScript The Good Parts"})
 ```
 
-It’s better to assign the initial value through the constructor versus using the document.set() method, because Mongoose has to process less function calls and our code remains more compact and better organized. Of course, this is possible only if we know the values when we create the instances.
+It’s better to assign the initial value through the constructor versus using the document.set() 
+method, because Mongoose has to process less function calls and our code remains more compact and 
+better organized. Of course, this is possible only if we know the values when we create the instances.
 
-Don’t confuse static with instance model methods. If we call a method on practicalNodeBook, it’s an instance method; if we call it on the Book object, it’s a static class method.
+Don’t confuse static with instance model methods. If we call a method on practicalNodeBook, it’s 
+an instance method; if we call it on the Book object, it’s a static class method.
 
-Models have static built-in methods that are very similar to Mongoskin and native MongoDB methods, such as find(), create(), and update().
+Models have static built-in methods that are very similar to Mongoskin and native MongoDB methods, 
+such as find(), create(), and update().
 
 ---
