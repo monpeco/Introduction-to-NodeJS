@@ -387,4 +387,176 @@ the the contact.address.zip is a path.
 
 ---
 
-#### 
+#### Working with Mongoose ODM   Working with Mongoose Models   Building Mongoose Models
+
+# Video: Building models with Mongoose
+
+https://youtu.be/nY6RZKqQ8pc
+
+>> Let's take a look at
+another example in which we have more functions and
+methods to work with
+the mongoose model and mongoose documents.
+So, first of all, let's take a look at the schema.
+You can set the default values.
+For example updatedAt default.
+So you can provide your value
+when you create an object or you can skip it.
+If you skip it, then the current date will be used.
+Then I also have the name.
+Published is the Boolean.
+The name is the string,
+and created is the date same as
+updatedAt and createdAt, they're both dates.
+And if you can see,
+I'm providing author and the link
+as well to the practical Node.js.
+But they will be ignored.
+So this object would not
+have the fields which are not in the schema.
+So schema is validated against,
+if you have that property in the schema,
+it will be in the object, in the document.
+If you don't have it,
+it will be just omitted.
+And also the type must be the same as in the schema.
+And then, I am checking,
+is it a new object?
+Is it a new document?
+So, this would be true. It would be yes.
+It's a new, because we never saved it.
+Okay? So you can also check
+that this object has been
+saved to the database or not yet.
+So, let's go ahead and save it.
+So we save it as in the previous example,
+perform the error handling,
+but then we can also check for this new.
+The new would be false in this case, okay?
+And the main idea of mongoose is
+that you don't work with the database directly.
+You work with objects, okay?
+So thus we create a document,
+we work with documents
+which are object, they're mongoose objects.
+So, first we create that object.
+We create the document and then we save it.
+And then if you want to update it,
+you would not run the update query,
+you would find it.
+So book with the capital B,
+it's a model. It has findOne.
+It has find by ID as well.
+So you would find it.
+And if you remember with
+the native MongoDB driver for Node.js,
+you had to use object ID.
+Here, it will cast it for you.
+So you can just provide the ID which is a string,
+and it will cast it for you.
+And, you can also filter
+what fields do you want to output?
+You can say, I don't need all the fields.
+And this document is not going to be just a plain object,
+it will be mongoose object.
+That's why we can invoke to JSON,
+or we can access the ID property,
+and then we just modifying one field published true,
+and then we can either save it.
+So let's then come in to save,
+or we can remove it.
+So let's go ahead and run it.
+Of course we need to be in the right folder,
+and we need to have the mongoose module installed
+which you can check in the node modules.
+So, we have the mongoose and the dependences of mongoose.
+That's great. So now we are executing our small script.
+So first it says yes.
+It's a new because it exist only in the memory.
+It's not actually has
+been saved to the physical database.
+Then we saved it to the database.
+And you can see that the link was ignored.
+The author was ignored,
+but other fields they made it through.
+And also you can see that updatedAt,
+we don't specify it,
+but it was added
+automatically because we have that default value.
+And of course ID,
+underscore ID, was also added.
+And then, the new is false now.
+So this output, it comes from this line.
+Sorry, it comes from this line 25.
+So the line 18 it's true.
+And then on line 25 it's false now.
+And then we finding that object using the model method.
+So, book with a capital B, it's a model,
+which can return as the mongoose document.
+So bookDoc, that's a document,
+it's exactly the same as Practical Node.
+I'm just illustrating that you can
+find that document many places.
+You don't have to create it in order to use it.
+You can find it later if you have object ID,
+or any other pointer.
+Okay. So this is our object.
+So toJSON, we are outputting it back.
+And then we can compare the ID.
+The ID is exactly the same as we had before.
+But why don't we have created?
+Why don't we have updatedAt?
+Well, that's because I specified this field.
+So if you remove this field,
+then we will get all the records.
+So let's run it again.
+And now you can see that I'm
+getting all the records here.
+So I have all the fields,
+all the properties from that document,
+not just the name.
+And finally, the remove.
+So remove, that will delete that object.
+So use safe, use remove.
+Do not use update directly because,
+that's you just working with the MongoDB directly.
+Try to find an object which would be the mongoose object,
+the document object, and then it has
+all those methods such as ID,
+is new property, ID property,
+safe method, remove method,
+and also you can do many many other things which
+I outline in the document and the text for this course.
+Go ahead and check those methods.
+This is the best practice,
+so use the mongoose methods for the document,
+and for the model as well.
+So model, it's like a collection.
+You can find, find by ID,
+find and update as well.
+It has a lot of methods, not just find.
+
+### Building models with Mongoose
+
+As in many other ORMs, in Mongoose, the cornerstone object is a model. To compile a schema into a model, use mongoose.model(name, schema)—for example,
+
+```node
+let Book = mongoose.model('Book', bookSchema)
+```
+
+The first parameter is just a string, which we can use later to pull the instance of this model. Usually, this string is the same as the object literal for the model (e.g., Book).
+
+Models are used to create documents (actual data). To do so, call new ModelName(data)—for example,
+
+```node
+let practicalNodeBook = new Book({ name: 'Practical Node.js' })
+let javascriptTheGoodPartsBook = new Book({ name: "JavaScript The Good Parts"})
+```
+
+It’s better to assign the initial value through the constructor versus using the document.set() method, because Mongoose has to process less function calls and our code remains more compact and better organized. Of course, this is possible only if we know the values when we create the instances.
+
+Don’t confuse static with instance model methods. If we call a method on practicalNodeBook, it’s an instance method; if we call it on the Book object, it’s a static class method.
+
+Models have static built-in methods that are very similar to Mongoskin and native MongoDB methods, such as find(), create(), and update().
+
+---
