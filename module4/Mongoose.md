@@ -2,7 +2,121 @@
 
 # Video: Mongoose Overview
 
-TODO: Missing video
+https://youtu.be/kW5hwUSqsYU
+
+>> Hi there. Welcome to module number four,
+working with Mongoose, object document mapper.
+This module, will tell you, about,
+some of the core concepts of Mongoose,
+and why it's beneficial to use Mongoose.
+To give you a quick overview.
+You're working with one good DB,
+and, you need to put some business logic.
+You need to put, certain, logic, certain functions.
+If this, then that.
+So you have, certain scenarios,
+you have certain rules, in your applications.
+So where would you put it?
+Maybe you can create a function.
+Maybe, you would trigger that function when
+certain event happens. That might be good.
+But Mongoose will provide you
+a special place to put that certain logic.
+It's called pre and post hooks.
+And that's what we will cover in this module.
+It's one of the features of Mongoose,
+and one of the benefits why you
+would choose Mongoose versus just,
+more good DB native no-jazz driver,
+or, some other library.
+But that's not all, Mongoose
+will also provide you with schemas.
+In fact, you can not use Mongoose
+without creating a schema for your documents.
+You might say, stop a second.
+I thought Mongo DB is schemaless.
+Yes. One good DB itself is schemaless,
+but at a certain stage in your application,
+once your application becomes bigger and larger,
+you might want to prevent,a certain schemas.
+First of all, you want to validate your data.
+Right? You want to sanitize.
+You don't want just any data
+to be saved to your database,
+especially once your applications
+grows bigger and larger,
+and more and more developers,
+start working in it and more and more clients start,
+using and sending you the data.
+You want to sanitize your data to do that validation.
+Also, you want, oftentimes
+you want to enforce the schema,
+because that will make your data consistent,
+even in a non SQL database.
+So all of that Mongoose
+will provide for you and it will do,
+that in its business layer,
+in the application layer,
+by, allowing you to create schemas,
+or allowing you to create models,
+and then allowing you to create methods, for the models.
+And, in the end,
+you would work with models.
+You wouldn't work directly with Mongo DB method,
+such as find or update.
+You would create a model,
+and then you would work with that model.
+So model, it's a special Mongoose object,
+and you would work with that abstraction,
+with that class, which is,
+in a way, it's nicer,
+it's easier than, working with
+low level API such as update,
+or remove, which Mongo DB provides.
+So, that's a quick overview of this module, and,
+as I've said previously,
+it's more or less optional,
+it's more or less advanced topic.
+A lot of projects I worked on,
+we didn't use Mongoose,
+and sometimes, the downside of Mongoose.
+Mongoose queries can become very slow.
+Then, the reason for that because,
+Mongoose does so many things for you,
+it has to run through a lot of functions,
+and a lot of logic, before it
+executes and gives you back the result of those queries.
+So Mongoose, it's, not a default choice.
+You need to consider the benefits, and the downsides,
+of using such such a feature,
+rich and, rather advanced libraries, such as Mongoose.
+So, what we will cover in this course,
+we will, discuss how to create schemas, and models.
+Without schemas and models you cannot work with Mongoose,
+so we will start with that.
+We will create schemas for,
+objects and, we will instantiate models,
+and work with models, and we will
+save those models to make our data persist.
+After that, we will,
+discuss how you can create methods on models,
+and,the last topic, would be is,
+to create, to enforce the validation,
+and to create post,and pre hooks,
+for the models and for certain operations such as safe.
+At the end, we will,
+refactor our restful API,
+instead of using Mongo DB native driver,
+we would be using Mongoose.
+And you would have, nice all around experience,
+and you would have a running application, using Mongoose.
+So, that's all about this module.
+It's, Mongoose, Its a great library to use, and to know.
+It's been, we used it at Storify to a great success,
+to, encapsulate our business logic.
+I hope you'll enjoy it,
+and I'll see you in the next video.
+
 
 # Module 4: Mongoose Overview
 
