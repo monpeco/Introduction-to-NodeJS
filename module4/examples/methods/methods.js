@@ -12,7 +12,8 @@ const bookSchema = mongoose.Schema({
 bookSchema.method({
   buy: function(quantity, customer, callback){
     var bookToPurchase = this;
-    console.log('buy triggered');
+    bookToPurchase.published = true;
+    console.log('bookToPurchase.published: ' + bookToPurchase.published );
     return 0;
   },
   refund: function(customer, callback){
@@ -23,7 +24,7 @@ bookSchema.method({
 let Book = mongoose.model('Book', bookSchema);
 
 let practicalNodeBook = new Book({ 
-  name: 'Practial node.js 2nd version (with model method 2nd)', 
+  name: 'Practial node.js 2nd version (with model method 2nd and published)', 
   author: 'Azat',
   link: 'https:github.com/another_stuff',
   createdAt: Date.now()
