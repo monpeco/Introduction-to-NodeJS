@@ -34,6 +34,16 @@ bookSchema.virtual('fullname')
     return this.name + ' ' + this.email;
   });
 
+bookSchema.virtual('info')
+  .get(function(){
+    return {
+      name: this.name,
+      desc: this.fullname,
+      createdAt: this.createdAt,
+    };
+  });
+
+
 let Book = mongoose.model('Book', bookSchema);
 let practicalNodeBook = new Book({
   name: 'Practial node.js 2nd version', 
@@ -51,6 +61,9 @@ practicalNodeBook.save((err, result) => {
     console.log('Saved: ' + result);
     console.log('Book author photo: ' + practicalNodeBook.authorPhotoUrl);
     console.log('Book fullname: ' + practicalNodeBook.fullname);
+    console.log('Book info.name: ' + practicalNodeBook.info.name);
+    console.log('Book info.desc: ' + practicalNodeBook.info.desc);
+    console.log('Book info.createdAt: ' + practicalNodeBook.info.createdAt);
     process.exit(0);
   }
 });
