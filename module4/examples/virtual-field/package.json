@@ -1,0 +1,15 @@
+{
+  "name": "virtual-field",
+  "version": "1.0.0",
+  "description": "",
+  "main": "virtual.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "4.13.9"
+  }
+}
