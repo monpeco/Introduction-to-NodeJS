@@ -11,7 +11,23 @@ const bookSchema = mongoose.Schema({
   reviews: [mongoose.Schema.Types.Mixed]
 });
 
-bookSchema.virtual('');
+bookSchema.virtual('authorPhotoUrl')
+.get(function(){
+  if(!this.email) return null;
+  let crypto = require('crypto');
+  
+  let email = this.email; 
+  email = email.trim();
+  email = email.toLowerCase();
+  
+  let hash =crypto
+    .createHash('md5')
+    .update(email)
+    .digest('hex');
+  
+  let gravatarBaseUrl = 'https://secure.gravatar.com/avatar/';
+  return gravatarBaseUrl + hash;
+});
 
 let Book = mongoose.model('Book', bookSchema);
 let practicalNodeBook = new Book({
@@ -28,6 +44,7 @@ practicalNodeBook.save((err, result) => {
     process.exit(1);
   }else{
     console.log('Saved: ' + result);
+    console.log('Book author photo: ' + practicalNodeBook.authorPhotoUrl);
     process.exit(0);
   }
 });
