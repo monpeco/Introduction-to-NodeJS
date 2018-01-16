@@ -803,3 +803,206 @@ where it's best suited - in the model schemas.
 words, before calling the mongoose.model() method.
 
 ---
+
+
+#### Working with Mongoose ODM   Advanced Mongoose Features   Virtual Fields
+
+# Video: Virtual Fields and Nested Documents
+
+https://youtu.be/QY00qHcB2YM
+
+>> Welcome to module four, lesson five.
+In this example, I will show you how to use
+nested documents and also how to create a virtual field.
+So let's start with nested documents.
+Reviews, they belong to a book,
+a book can have reviews.
+And the type, if you don't know the type,
+you can just say it's a mixed type,
+and then the actual structure of
+the reviews will be determined
+later when you run this application.
+The rest of the code is just,
+we're using the schema and then we are
+creating a mongoose document,
+it's in memory until we save it.
+When we save it, it becomes persistent,
+it becomes permanent in the database.
+And, let's also output the author photo,
+the URL of the photograph of the author of this book.
+And if you're familiar with gravatar,
+it's a server that will allow us to
+get that picture based on an e-mail.
+So it's simple MD5 hash.
+And we actually don't need to store
+that because that link will
+change depending on different things.
+So we don't want to start,
+it's just the link could be reproduced from the e-mail.
+So that's where the virtual comes into power.
+So with the virtual field,
+we can just set up that photo profile,
+author photo URL, this is how
+you do it, bookSchema.virtual.
+And it would be just like a normal field,
+but it's not going to be actually saved in the database.
+It will be computed on demand,
+so only when you need it,
+you will get the value and it's always
+will be the accurate value coming from an e-mail.
+You don't have to synchronize and worry about
+database migration and changing
+that field every time e-mail changes.
+So you produce it on the fly for convenience.
+You create a virtual because you
+don't want to replicate this code.
+To create a hash,
+we would use the crypto.
+Crypto, it's a core NodeJS module.
+We don't need to install it with NPM,
+and you can refer to other properties using this DHIS.
+So for example, I'm getting the value of an e-mail,
+removing all those spaces
+and making it lowercase and then I'm using
+MD5 hash here MD5 algorithm to hash that email string.
+And this is how crypto works,
+digest the output in the hex format.
+The gravatar base, that's just a constant.
+It's not going to change, https://secure.gravatar,
+and we would append,
+we would add our hash to that URL.
+So look at this carefully.
+We're returning the base plus the hash.
+So, it's always will be accurate.
+We don't even need to ask
+authors to provide with the URL,
+as long as they sign up for gravatar service.
+And most of the people they do know,
+they would get a nice picture of them already
+populated on our webpage,
+or in any place where we want to use it.
+So for now, we would just output it in the content log.
+So let's go ahead and try it.
+So let's make sure I'm in the right folder,
+by just dragging this folder into the terminal.
+And so this is my file,
+mongoose, I run it.
+And you can see that the field is undefined.
+So maybe that's because I didn't save it.
+So now I saved the file.
+So let's run it again.
+And now it's defined.
+So don't forget to save
+the file when you're working with it.
+So let's copy this URL and go to the browser.
+let's past it and see if it's valid. Yes, it's valid.
+So we got the proper MD5 hash and that's me.
+It's a little bit small, but hope you can recognize me.
+So we created a virtual field.
+As you can see when I'm just
+outputting my object it's not there.
+If you don't believe me,
+so let's copy this.
+Let's copy this property.
+Let's copy this ID.
+So this is how you can create
+a virtual field for all intents and purposes,
+for all the rest of the code.
+You can see that it acts as a normal field,
+as a normal property of that document.
+So I often use
+this feature when we were changing the structure.
+So I would create a virtual,
+so that the old
+documents which don't need this new property,
+they don't have that property,
+they can still function.
+I don't get undefined error.
+And also for things like gravatar, for hashes,
+for things that are products of other fields.
+For example, first name and last name,
+so the full name would be,
+you just concatenate first name and last name.
+You don't need to save the full name.
+So this is it for this video,
+and I'll see you in the next one.
+
+
+### Virtual Fields
+
+Virtuals are fields that don’t exist in the database but act just like normal fields in a 
+Mongoose document. To oversimplify, virtual fields are mock or fake fields that pretend to 
+act and be normal ones.
+
+Virtual fields are awesome for creating aggregate fields. For example, if our system requires 
+to have first name, last name and the full name (which is just a concatenation of the first 
+two names)—there’s no need to store the full name values in addition to the first and last 
+name values! All we need to do is concatenate the first and last name in a full name virtual.
+
+Another use case is to make the database backward compatible. For example, we might have 
+thousands of user items in a MongoDB collection and we want to start collecting their 
+locations. We have two options: run a migration script to add the default location (“none”) 
+to the thousands of old user documents or use a virtual field and apply defaults at runtime!
+
+To define a virtual we need to:
+
+1. Call the virtual(name) method to create a virtual type ([Mongoose API](http://mongoosejs.com/docs/api.html#document-js))
+2. Apply a getter function with get(fn) ([Mongoose API](http://mongoosejs.com/docs/api.html#virtualtype_VirtualType-get))
+
+[Gravatar](http://en.gravatar.com/), for example, is a service that hosts profile images. 
+The URL is always an md5 hash of the user’s e-mail. Therefore, we can get the virtual value 
+(gravatarUrl) on the fly by hashing instead of storing the value (less overhead!).
+
+In this example, we intentionally made the input email mixed cased and with a trailing space, 
+and then applied crypto:
+
+```node
+Identity.virtual('gravatarUrl')
+  .get(function() {
+    if (!this.email) return null
+    var crypto = require('crypto'),
+      email = "Hi@azat.co "
+    email = email.trim()
+    email = email.toLowerCase()
+    var hash = crypto
+      .createHash('md5')
+      .update(email)
+      .digest('hex')
+    var gravatarBaseUrl = 'https://secure.gravatar.com/avatar/'
+    return gravatarBaseUrl + hash
+  })
+```
+
+Or, the case mentioned earlier—getting a full name out of first and last—is as follows:
+
+```node
+userSchema.virtual('fullName')
+  .get(function(){
+    return this.firstName + ' ' + this.lastName
+  })
+```
+
+Another scenario is when only a subset of the full document is exposed. For example, if 
+the user model has tokens and passwords, we omit these sensitive fields by white-listing 
+only the fields we want to expose:
+
+```node
+userSchema.virtual('info')
+  .get(function() {
+    return {
+      service: this.service,
+      username: this.username,
+      name: this.name,
+      date: this.date,
+      url: this.url,
+      avatar: this.avatar
+    }
+  })
+```
+  
+Virtual fields allow for a flexible way to create database fields without having to have the 
+actual fields in the database.
+
+---
+
+#### 
