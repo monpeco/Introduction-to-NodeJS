@@ -29,6 +29,11 @@ bookSchema.virtual('authorPhotoUrl')
   return gravatarBaseUrl + hash;
 });
 
+bookSchema.virtual('fullname')
+  .get(function(){
+    return this.name + ' ' + this.email;
+  });
+
 let Book = mongoose.model('Book', bookSchema);
 let practicalNodeBook = new Book({
   name: 'Practial node.js 2nd version', 
@@ -45,6 +50,7 @@ practicalNodeBook.save((err, result) => {
   }else{
     console.log('Saved: ' + result);
     console.log('Book author photo: ' + practicalNodeBook.authorPhotoUrl);
+    console.log('Book fullname: ' + practicalNodeBook.fullname);
     process.exit(0);
   }
 });
