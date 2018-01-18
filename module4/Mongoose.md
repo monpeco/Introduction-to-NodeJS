@@ -1404,8 +1404,124 @@ The post is { _id: 59bfbbda6fcae76e2a1df38c,
        __v: 0 } ] }
 ```
 
-```node
-```
+Now let's flip the approach and fetch the comment with post info.
+
+**Parent Refs**
+
+Now let's implement the approach where children have parent refs, i.e., 
+comments will have a reference to post. This way populate() on a comment 
+query will bring post information. Again, you don't need to first fetch 
+the comment and then execute a new query to fetch the corresponding post. 
+Instead with populate(), you run a single query and boom! The post data 
+is populated for you.
+
+Create a file fetch-blog-posts-parent-refs.js and import Mongoose:
 
 ```node
+const mongoose = require('mongoose')
+mongoose.Promise = global.Promise
+mongoose.connect('mongodb://localhost:27017/edx-course-db',
+  {useMongoClient: true})
 ```
+
+Define post and comment schemas. This time, do not define any comment 
+refs in post, but define a post reference in the comment schema:
+
+```node
+const Post = mongoose.model('Post', 
+  { name: String,
+    url: String,
+    text: String
+  }
+ )
+const Comment = mongoose.model('Comment', {
+  text: String,
+  post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
+})
+```
+
+Create a new post object without any comments and save it:
+
+```node
+let post = new Post({
+  name: 'Top 10 ES6 Features every Web Developer must know',
+  url: 'https://webapplog.com/es6',
+  text: 'This essay will give you a quick introduction to ES6. If you don’t know what is ES6, it’s a new JavaScript implementation.'
+})
+```
+
+Next, save the post object and comments. Each comment will 
+have the ID of the newly created post. When all comments 
+are saved (i==list.length), then execute the query 
+queryCommentWithPost():
+
+```node
+post.save((err) => {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log('Post is saved: ', post.toJSON())
+  }
+  let i = 0
+  let ca = [{text: 'Cruel…..var { house, mouse} = No type optimization at all'},
+    {text: 'I think you’re undervaluing the benefit of ‘let’ and ‘const’.'},
+    {text: '(p1,p2)=>{ … } ,i understand this ,thank you !'} 
+  ].forEach((comment, index, list) => {
+    comment.post = post._id
+    const c = new Comment(comment)
+    c.save((error, result)=>{
+      if (error) return console.error(error)
+      i++
+      if (i==list.length) {
+       queryCommentWithPost()
+      }
+    })
+  })
+})
+```
+
+The query uses findOne() on the Comment model and the populate() method 
+to fetch related post:
+
+```node
+const queryCommentWithPost = () => {
+   // Populate
+   Comment
+   .findOne({ text: /Cruel/i })
+   .populate('post')
+   .exec(function (err, comment) {
+     if (err) return console.error(err)
+     console.log(`The comment is ${comment}`)
+     mongoose.disconnect()
+   })
+}
+```
+
+The result will look like this. Notice in The comment is..., 
+the full post information in the comment document and not an 
+object ID (as would be in the actual database document):
+
+```
+node fetch-blog-posts-parent-refs.js
+Post is saved:  { __v: 0,
+  name: 'Top 10 ES6 Features every Web Developer must know',
+  url: 'https://webapplog.com/es6',
+  text: 'This essay will give you a quick introduction to ES6. If you don’t know what is ES6, it’s a new JavaScript implementation.',
+  _id: 59bfc0d5d4bc5172a551b62e }
+The comment is { _id: 59bfbf19326c7a7133340bea,
+  text: 'Cruel…..var { house, mouse} = No type optimization at all',
+  post:
+   { _id: 59bfbf19326c7a7133340be9,
+     name: 'Top 10 ES6 Features every Web Developer must know',
+     url: 'https://webapplog.com/es6',
+     text: 'This essay will give you a quick introduction to ES6. If you don’t know what is ES6, it’s a new JavaScript implementation.',
+     __v: 0 },
+  __v: 0 }
+Wrap up
+```
+
+Mongoose provide a convenient way to fetch data of related objects. 
+This is a useful feature when you need to get data in a single query.
+
+
+---
