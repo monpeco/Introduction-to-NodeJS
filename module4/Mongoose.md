@@ -1525,3 +1525,26 @@ This is a useful feature when you need to get data in a single query.
 
 
 ---
+
+#### Working with Mongoose ODM   Module 4 Tutorial Lab Relational Queries with Mongoose   Video Walkthrough and Solution
+
+# Video: Relational Queries with Mongoose Tutorial part 1
+
+TODO: missing video
+
+# Video: Relational Queries with Mongoose Tutorial part 2
+
+TODO: missing video
+
+You can download the solution here:
+
+With references to parents - [fetch-blog-posts-parent-refs.js](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/7caa50964c646c18fe08a01771d4bdd7/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/fetch-blog-posts-parent-refs.js)
+
+With reference to children - [fetch-blog-posts-child-refs.js](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/f64222d45b5d0403ef99ba3af5535047/asset-v1:Microsoft+DEV283x+2T2017+type@asset+block/fetch-blog-posts-child-refs.js)
+
+To run the project, make a new project using npm init. Move the downloaded 
+file to the root of the project. Make sure to download all dependencies 
+with npm install. Also make sure to have an instance of MongoDB running 
+so you can store data. To run the script use 'node fetch-blog-posts-child-refs.js' 
+or 'node fetch-blog-posts-parent-refs.js'.
+
