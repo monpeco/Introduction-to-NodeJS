@@ -41,7 +41,16 @@ praticalPost.save((err, result) => {
     console.log('error: ' + err);
     process.exit(1);
   }else{
+    Post
+      .findOne({ name: /Top 10 ES6/i })
+      .populate('comments')
+      .exec(function(err, post){
+        if (err) return console.error(err);
+        console.log(`The post is ${post}`);
+        mongoose.disconnect();
+      });
     console.log('Post saved: ' + result);
-    process.exit(0);
   }
 });
+
+
