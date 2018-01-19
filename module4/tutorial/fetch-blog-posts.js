@@ -35,16 +35,13 @@ let praticalPost = new Post({
   url: 'This essay will give you a quick introduction to ES6. If you don’t know what is ES6, it’s a new JavaScript implementation.',
   comments: commentsArray
 });
-console.log(praticalPost);
 
 praticalPost.save((err, result) => {
   if(err){
-    console.log('error: ' );
+    console.log('error: ' + err);
     process.exit(1);
   }else{
-    console.log('Post saved: ' );
+    console.log('Post saved: ' + result);
     process.exit(0);
   }
 });
-
-console.log('End Script');
