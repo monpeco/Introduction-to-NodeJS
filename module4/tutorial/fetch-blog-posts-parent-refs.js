@@ -27,4 +27,22 @@ practicalPost.save( (err, result)=>{
   }else{
     console.log(`The post is saved: ${result}`)
   }
+  let i = 0;
+  let commentsArray = [
+    { text: 'Cruel…..var { house, mouse} = No type optimization at all' }, 
+    { text: 'I think you’re undervaluing the benefit of ‘let’ and ‘const’.' }, 
+    { text: '(p1,p2)=>{ … } ,i understand this ,thank you !' }
+  ].forEach((comment, index, list)=>{
+    comment.post = practicalPost._id;
+    const _comment = new Comment(comment);
+    _comment.save((err, result)=>{
+      if(err) return console.log(err);
+      i++;
+      console.log(`i: ${i}`);
+      console.log(`result: ${result}`);
+      if(i==list.length){
+        console.log('queryCommentWithPost');
+      }
+    });
+  });
 });
