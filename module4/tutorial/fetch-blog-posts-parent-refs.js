@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/edx');
+mongoose.connect('mongodb://localhost:27017/test');
 
 const Post = mongoose.model('Post', {
   name: String,
@@ -42,7 +42,21 @@ practicalPost.save( (err, result)=>{
       console.log(`result: ${result}`);
       if(i==list.length){
         console.log('queryCommentWithPost');
+        queryCommentWithPost();
       }
     });
   });
 });
+
+
+const queryCommentWithPost = () => {
+  Comment
+    .findOne({ text: /Cruel/i })
+    .populate('post')
+    .exec((err, result)=>{
+      if(err) return console.log(err);
+      console.log(`The comment inserted is ${result}`);
+      mongoose.disconnect;
+      process.exit(0);
+    })
+}
