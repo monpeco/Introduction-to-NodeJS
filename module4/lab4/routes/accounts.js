@@ -7,7 +7,6 @@ module.exports.get = (req, res) => {
 }
 
 module.exports.post = function(req, res){
-  res.status(200).send(`resource: posts, method: POST\n`);
   
   let _name = req.body.name;
   let _balance = parseInt(req.body.balance);
@@ -21,6 +20,7 @@ module.exports.post = function(req, res){
       console.log(err);
     }else{
       console.log('Saved: ' + result);
+      res.status(200).send(`Saved: ${result} \n`);
     }
   });
 }
