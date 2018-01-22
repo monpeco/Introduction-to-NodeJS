@@ -4,7 +4,7 @@ let express = require('express'),
     errorhandler = require('errorhandler');
 
 // Load the accounts methods
-let account = require('./routes/account');
+let account = require('./routes/accounts');
 
 let app = express();
 app.use(bodyParser.json());
@@ -12,7 +12,8 @@ app.use(logger('dev'));
 app.use(errorhandler());
 
 
-app.get('/accounts', account.getAccount);
+app.get('/accounts', account.get);
+app.post('/accounts', account.post);
 
 let server = app.listen(8080, () => {
   let port = server.address().port;
@@ -20,3 +21,8 @@ let server = app.listen(8080, () => {
 });
 
 console.log('End');
+
+/*
+curl "http://localhost:8080/accounts"
+curl -H "Content-Type: application/json" -X POST -d '{"balance": "1000", "name": "savings"}' "http://localhost:3000/accounts"
+*/
