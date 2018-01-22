@@ -26,5 +26,5 @@ console.log('End');
 /*
 curl "http://localhost:8080/accounts"
 curl -H "Content-Type: application/json" -X POST -d '{"balance": "1000", "name": "savings"}' "http://localhost:8080/accounts"
-curl -H "Content-Type: application/json" -X PUT -d '{"balance": "1500"}' "http://localhost:8080/accounts/"
+curl -H "Content-Type: application/json" -X PUT -d '{"balance": "1500"}' "http://localhost:8080/accounts/5a66026f8b6e111799c75d87"
 */

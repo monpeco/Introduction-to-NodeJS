@@ -44,13 +44,12 @@ module.exports.put = (req, res) => {
     if (err){
       console.log(err);
     }else{
-      
-      result.balance = _balance;
-      result.save( () => {
-        console.log('Updated: ' + result);
-        res.status(200).send(`Updated: ${result} \n`);
-      });
-
+      let response = {
+        message: "Account successfully updated",
+        id: __id
+      };
+      console.log(response);
+      res.status(200).send(response);
     }
   });
 
