@@ -8,9 +8,13 @@ module.exports.get = (req, res) => {
 
 module.exports.post = function(req, res){
   res.status(200).send(`resource: posts, method: POST\n`);
-
+  
+  let _name = req.body.name;
+  let _balance = parseInt(req.body.balance);
+  console.log(_name);
+  console.log(_balance);
   let Account = mongoose.model('Account', {name: String, balance: Number});
-  let practicalNodeAccount = new Account({ name: 'Practial Node.js', balance: 10 });
+  let practicalNodeAccount = new Account({ name: _name, balance: _balance });
   
   practicalNodeAccount.save((err,result) => {
     if (err){
