@@ -14,6 +14,7 @@ app.use(errorhandler());
 
 app.get('/accounts', account.get);
 app.post('/accounts', account.post);
+app.put('/accounts/:id', account.put);
 
 let server = app.listen(8080, () => {
   let port = server.address().port;
@@ -24,5 +25,6 @@ console.log('End');
 
 /*
 curl "http://localhost:8080/accounts"
-curl -H "Content-Type: application/json" -X POST -d '{"balance": "1000", "name": "savings"}' "http://localhost:3000/accounts"
+curl -H "Content-Type: application/json" -X POST -d '{"balance": "1000", "name": "savings"}' "http://localhost:8080/accounts"
+curl -H "Content-Type: application/json" -X PUT -d '{"balance": "1500"}' "http://localhost:8080/accounts/"
 */
