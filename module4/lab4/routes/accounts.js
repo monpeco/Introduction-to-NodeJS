@@ -54,3 +54,26 @@ module.exports.put = (req, res) => {
   });
 
 }
+
+module.exports.delete = (req, res) => {
+
+  let __id = req.params.id;
+  console.log(__id);
+
+  Account.findByIdAndRemove(__id, (err,result)=>{
+    if (err){
+      console.log(err);
+    }else{
+      
+      let response = {
+          message: "Account successfully deleted",
+          id: __id
+      };
+      console.log(response);
+      res.status(200).send(response);
+      
+
+    }
+  });
+
+}
