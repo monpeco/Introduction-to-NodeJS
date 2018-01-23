@@ -72,11 +72,18 @@ module.exports.delete = (req, res) => {
     if (err){
       console.log(err);
     }else{
-      
-      let response = {
+      let response = {};
+      if(result){
+        response = {
           message: "Account successfully deleted",
           id: __id
-      };
+        };
+      }else{
+        response = {
+          message: "Account not found",
+          id: __id
+        };
+      }
       console.log(response);
       res.status(200).send(response);
     }
