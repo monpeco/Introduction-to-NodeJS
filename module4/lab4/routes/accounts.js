@@ -44,12 +44,20 @@ module.exports.put = (req, res) => {
     if (err){
       console.log(err);
     }else{
-      let response = {
-        message: "Account successfully updated",
-        id: __id
-      };
+      let response = {};
+      if(result){
+        response = {
+          message: "Account successfully updated",
+          id: __id
+        };
+      }else{
+        response = {
+          message: "Account not found",
+          id: __id
+        };
+      }
       console.log(response);
-      res.status(200).send(response);
+      res.status(200).send(response);      
     }
   });
 
@@ -71,8 +79,6 @@ module.exports.delete = (req, res) => {
       };
       console.log(response);
       res.status(200).send(response);
-      
-
     }
   });
 
