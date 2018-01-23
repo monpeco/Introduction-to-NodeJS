@@ -73,7 +73,7 @@ To run the server:
 
 To test the endpoints:
 
-    # //posts account data
+    # posts account data
     curl -H "Content-Type: application/json" -X POST -d '{"balance": "1000", "name": "savings"}' "http://localhost:8080/accounts"
 
     # gets account data
