@@ -1,3 +1,8 @@
+### Resources
+
+#### Mongoose API Docs
+* http://mongoosejs.com/docs/api.html
+
 #### Working with Mongoose ODM   Mongoose Overview   Overview
 
 # Video: Mongoose Overview
