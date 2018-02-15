@@ -73,3 +73,5 @@ This course will cover the Node core modules, Express, MongoDB and Mongoose. Her
 2. Post-Course Survey
 3. Course Summary
 
+### Running mongod
+mongod -f /etc/mongodb.conf
